@@ -20,20 +20,24 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // initialize routes
-const categoriesRoutes = require("./routes/back/categories");
-const usersRoutes = require("./routes/back/users");
-const storiesRoutes = require("./routes/back/stories");
-app.use("/categories", categoriesRoutes);
-app.use("/users", usersRoutes);
-app.use("/stories", storiesRoutes);
+require("./routes")(app);
+
+// const categoriesRoutes = require("./routes/back/categories");
+// const usersRoutes = require("./routes/back/users");
+// const storiesRoutes = require("./routes/back/stories");
+// app.use("/categories", categoriesRoutes);
+// app.use("/users", usersRoutes);
+// app.use("/stories", storiesRoutes);
 
 // error handling
+//404
 app.use((req, res, next) => {
   const error = new Error("Not found");
   error.status = 404;
   next(error);
 });
 
+//all
 app.use((error, req, res, next) => {
   res.status(error.status || 500);
   res.json({
