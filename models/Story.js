@@ -28,7 +28,7 @@ let StorySchema = new mongoose.Schema({
   ],
   comments: [
     {
-      text: {
+      content: {
         type: String,
         required: [true, "You must write something"]
       },

@@ -1,14 +1,14 @@
 {
   "name": "story-share-app",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Mini social media",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Belzee10",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^2.0.1",
