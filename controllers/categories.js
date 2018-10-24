@@ -28,3 +28,29 @@ exports.save = (req, res) => {
       res.status(500).json(err);
     });
 };
+
+exports.update = (req, res) => {
+  const id = req.params.id;
+  Category.findOneAndUpdate({ _id: id }, req.body)
+    .then(data => {
+      res.status(201).json({
+        message: "Category updated"
+      });
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+};
+
+exports.delete = (req, res) => {
+  const id = req.params.id;
+  Category.remove({ _id: id })
+    .then(data => {
+      res.status(200).json({
+        message: "Category deleted"
+      });
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+};

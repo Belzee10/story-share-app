@@ -22,13 +22,6 @@ app.use(cors());
 // initialize routes
 require("./routes")(app);
 
-// const categoriesRoutes = require("./routes/back/categories");
-// const usersRoutes = require("./routes/back/users");
-// const storiesRoutes = require("./routes/back/stories");
-// app.use("/categories", categoriesRoutes);
-// app.use("/users", usersRoutes);
-// app.use("/stories", storiesRoutes);
-
 // error handling
 //404
 app.use((req, res, next) => {
