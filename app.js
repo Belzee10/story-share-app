@@ -6,13 +6,14 @@ const cors = require("cors");
 
 const app = express();
 
-// connect to mongoDB
+// connect to MongoDB
 mongoose.connect(
   "mongodb://localhost/storyShare",
   { useNewUrlParser: true }
 );
 mongoose.Promise = global.Promise;
 
+//middlewares
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
