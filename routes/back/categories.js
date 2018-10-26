@@ -2,11 +2,11 @@ const categoriesController = require("../../controllers/categories");
 
 module.exports = app => {
   app
-    .route("/categories")
+    .route("/admin/categories")
     .get(categoriesController.getAll)
     .post(categoriesController.save);
   app
-    .route("/categories/:id")
+    .route("/admin/categories/:id")
     .delete(categoriesController.delete)
     .patch(categoriesController.update);
 };
