@@ -1,4 +1,4 @@
-const categoriesController = require("../../controllers/categories");
+const categoriesController = require("../controllers/categories");
 
 module.exports = app => {
   app

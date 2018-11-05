@@ -10,7 +10,10 @@
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "keywords": [],
+  "keywords": [
+    "social media",
+    "MERN"
+  ],
   "author": "Belzee10",
   "license": "ISC",
   "dependencies": {

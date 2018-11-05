@@ -1,4 +1,4 @@
-const storiesController = require("../../controllers/stories");
+const storiesController = require("../controllers/stories");
 
 module.exports = app => {
   app
