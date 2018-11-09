@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { Route, Redirect, Switch } from "react-router-dom";
+// import { Route, Redirect, Switch } from "react-router-dom";
+
+import Navbar from "./Navbar";
 
 class Main extends Component {
   constructor(props) {
@@ -8,12 +10,13 @@ class Main extends Component {
   }
   render() {
     return (
-      <Switch>
-        {/* <Route path="/todos/new" component={TodosNew} />
-        <Route path="/todos/:id" component={TodoShow} />
-        <Route exact path="/" component={Todos} />
-        <Redirect from="*" to="/" /> */}
-      </Switch>
+      <Navbar />
+      // <Switch>
+      //   <Route path="/todos/new" component={TodosNew} />
+      //   <Route path="/todos/:id" component={TodoShow} />
+      //   <Route exact path="/" component={Todos} />
+      //   <Redirect from="*" to="/" />
+      // </Switch>
     );
   }
 }
