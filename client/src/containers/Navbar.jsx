@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import Logo from "../components/common/Logo";
 import Button from "../components/common/Button";
-import Links from "../components/Links";
+import Links from "../components/navbar/Links";
 
 class Navbar extends Component {
   constructor(props) {

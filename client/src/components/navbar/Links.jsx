@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import Logo from "./common/Logo";
+import Logo from "../common/Logo";
 import Link from "./Link";
 
 const links = [
@@ -91,67 +91,3 @@ class Links extends Component {
 }
 
 export default Links;
-
-// const Links = props => {
-//   const links = [
-//     {
-//       id: 1,
-//       name: "All"
-//     },
-//     {
-//       id: 2,
-//       name: "Photography"
-//     },
-//     {
-//       id: 3,
-//       name: "Web development"
-//     },
-//     {
-//       id: 4,
-//       name: "Web design"
-//     },
-//     {
-//       id: 5,
-//       name: "Nature"
-//     },
-//     {
-//       id: 6,
-//       name: "More"
-//     }
-//   ];
-//   return (
-//     <nav className="navbar navbar-expand-lg navbar-light bg-light border-top border-bottom p-0">
-//       <a className="navbar-brand d-lg-none" href="#">
-//         <Logo height="25px" />
-//       </a>
-//       <button
-//         className="navbar-toggler border-0"
-//         type="button"
-//         data-toggle="collapse"
-//         data-target="#navbarSupportedContent"
-//         aria-controls="navbarSupportedContent"
-//         aria-expanded="false"
-//         aria-label="Toggle navigation"
-//       >
-//         <span className="navbar-toggler-icon" />
-//       </button>
-//       <div
-//         className="collapse navbar-collapse show"
-//         id="navbarSupportedContent"
-//       >
-//         <ul className="navbar-nav mx-auto">
-//           {links.map(link => (
-//             <Link link={link} key={link.id} />
-//           ))}
-//           <li className="nav-item d-lg-none">
-//             <a href="#" className="btn btn-dark btn-sm">
-//               Sign Up
-//             </a>
-//           </li>
-//         </ul>
-//       </div>
-//     </nav>
-//   );
-// };
-
-// export default Links;
