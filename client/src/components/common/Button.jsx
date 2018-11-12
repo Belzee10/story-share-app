@@ -1,12 +1,19 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Button = props => {
-  const buttonClass = `btn ${props.buttonClass}`;
+  const buttonClass = `btn ${props.buttonClass} btn-sm`;
+  const children = props.children;
   return (
     <button type={props.buttonType} className={buttonClass}>
-      {props.children}
+      {children}
     </button>
   );
+};
+
+Button.propTypes = {
+  buttonClass: PropTypes.string.isRequired,
+  buttonType: PropTypes.string.isRequired
 };
 
 export default Button;

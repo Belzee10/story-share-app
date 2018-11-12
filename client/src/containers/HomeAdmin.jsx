@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class HomeAdmin extends Component {
   constructor(props) {
@@ -6,7 +7,14 @@ class HomeAdmin extends Component {
     this.state = {};
   }
   render() {
-    return <h1 className="text-center">Admin Page</h1>;
+    return (
+      <div className="text-center">
+        <h1>Admin Page</h1>
+        <Link to="/admin/categories">Go to Categories</Link>
+        {/* <Link to="/admin/stories">Go to Stories</Link>
+        <Link to="/admin/users">Go to Users</Link> */}
+      </div>
+    );
   }
 }
 

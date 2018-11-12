@@ -490,6 +490,9 @@ span.like-cant {
 #profile .show-more {
   margin-top: 1.5rem !important;
 }
+.table th {
+  padding: 6px 12px;
+}
 
 @media (min-width: 576px) {
   #stories h5 {
