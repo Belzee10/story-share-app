@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-// import { Route, Redirect, Switch } from "react-router-dom";
+import { Route, Redirect, Switch } from "react-router-dom";
 
 import Navbar from "./Navbar";
+import Home from "./Home";
+import HomeAdmin from "./HomeAdmin";
 
 class Main extends Component {
   constructor(props) {
@@ -10,13 +12,14 @@ class Main extends Component {
   }
   render() {
     return (
-      <Navbar />
-      // <Switch>
-      //   <Route path="/todos/new" component={TodosNew} />
-      //   <Route path="/todos/:id" component={TodoShow} />
-      //   <Route exact path="/" component={Todos} />
-      //   <Redirect from="*" to="/" />
-      // </Switch>
+      <React.Fragment>
+        <Navbar />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/admin" component={HomeAdmin} />
+          <Redirect from="*" to="/" />
+        </Switch>
+      </React.Fragment>
     );
   }
 }

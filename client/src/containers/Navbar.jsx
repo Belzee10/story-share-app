@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 import Logo from "../components/common/Logo";
 import Button from "../components/common/Button";
@@ -20,14 +21,21 @@ class Navbar extends Component {
             <div className="container">
               <div className="row">
                 <div className="col-lg-4 offset-4 text-center">
-                  <a href="#" className="d-inline-block">
+                  <Link to="/" className="d-inline-block">
                     <Logo height="45px" />
-                  </a>
+                  </Link>
                 </div>
                 <div className="col-lg-4 col-6">
                   <ul className="user-info">
                     <li>
-                      <Button buttonClass="btn-dark btn-sm">Get Started</Button>
+                      <Link to="/admin" className="btn btn-link">
+                        Go to Admin
+                      </Link>
+                    </li>
+                    <li>
+                      <Button buttonType="button" buttonClass="btn-dark btn-sm">
+                        Get Started
+                      </Button>
                     </li>
                   </ul>
                 </div>
