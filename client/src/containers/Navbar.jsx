@@ -33,7 +33,11 @@ class Navbar extends Component {
                       </Link>
                     </li>
                     <li>
-                      <Button buttonType="button" buttonClass="btn-dark">
+                      <Button
+                        buttonUrl="/"
+                        buttonType="link"
+                        buttonClass="btn-dark"
+                      >
                         Get Started
                       </Button>
                     </li>

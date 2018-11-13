@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { fetchCategories } from "../../actions/categoryActions";
 
 import List from "../../components/common/List";
 import Button from "../../components/common/Button";
@@ -9,23 +11,36 @@ class Categories extends Component {
     super(props);
     this.state = {};
   }
+
+  componentDidMount() {
+    this.props.fetchCategories();
+  }
+
   render() {
+    const { categories } = this.props;
     return (
       <div>
         <div className="container">
           <div className="d-flex justify-content-between mb-2">
-            <Button buttonClass="btn-dark" buttonType="button">
+            <Button buttonUrl="/" buttonClass="btn-dark" buttonType="link">
               New Category
             </Button>
             <div>
-              <Count value={22} /> categories founded
+              <Count value={categories.length}>categories founded</Count>
             </div>
           </div>
-          <List />
+          <List items={categories} />
         </div>
       </div>
     );
   }
 }
 
-export default Categories;
+const mapStateToProps = state => ({
+  categories: state.categories.items
+});
+
+export default connect(
+  mapStateToProps,
+  { fetchCategories }
+)(Categories);
