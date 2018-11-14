@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchCategories } from "../../actions/categoryActions";
+import { fetchCategories, deleteCategory } from "../../actions/categoryActions";
 
 import List from "../../components/common/List";
 import Button from "../../components/common/Button";
@@ -11,6 +11,7 @@ class Categories extends Component {
     super(props);
     this.state = {};
     this.countMessage = this.countMessage.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
@@ -27,6 +28,10 @@ class Categories extends Component {
     }
   }
 
+  handleDelete(item) {
+    this.props.deleteCategory(item._id);
+  }
+
   render() {
     const { categories, keys } = this.props;
     return (
@@ -40,7 +45,11 @@ class Categories extends Component {
               <Count value={categories.length}>{this.countMessage()}</Count>
             </div>
           </div>
-          <List items={categories} keys={keys} />
+          <List
+            handleDelete={this.handleDelete}
+            items={categories}
+            keys={keys}
+          />
         </div>
       </div>
     );
@@ -54,5 +63,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchCategories }
+  { fetchCategories, deleteCategory }
 )(Categories);

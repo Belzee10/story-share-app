@@ -1,4 +1,4 @@
-import { FETCH_CATEGORIES } from "./types";
+import { FETCH_CATEGORIES, DELETE_CATEGORY } from "./types";
 
 const headers = {
   "Content-Type": "application/json",
@@ -16,4 +16,17 @@ export const fetchCategories = () => dispatch => {
     )
     .catch(err => console.error(err));
 };
-//asdfsdf
+
+export const deleteCategory = categoryId => dispatch => {
+  fetch("/api/admin/categories/" + categoryId, {
+    headers,
+    method: "DELETE"
+  })
+    .then(res => res.json())
+    .then(data =>
+      dispatch({
+        type: DELETE_CATEGORY,
+        payload: data
+      })
+    );
+};

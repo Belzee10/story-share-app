@@ -51,6 +51,7 @@ exports.delete = (req, res) => {
         .sort({ created_at: "desc" })
         .then(data => {
           res.status(200).json({
+            keys: Object.keys(Category.schema.paths),
             result: data,
             message: "Category deleted"
           });

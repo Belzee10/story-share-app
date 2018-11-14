@@ -7,26 +7,31 @@ const Button = props => {
   const btnClass = `btn ${buttonClass} btn-sm`;
   const children = props.children;
 
-  const button = (
-    <button type={buttonType} className={btnClass}>
-      {children}
-    </button>
-  );
-
-  const link = (
-    <Link to={buttonUrl} type={buttonType} className={btnClass}>
-      {children}
-    </Link>
-  );
-
-  return buttonType === "button" ? button : link;
+  if (buttonType === "button" || buttonType === "submit") {
+    return (
+      <button
+        type={buttonType}
+        className={btnClass}
+        onClick={props.handleAction}
+      >
+        {children}
+      </button>
+    );
+  } else {
+    return (
+      <Link to={buttonUrl} className={btnClass}>
+        {children}
+      </Link>
+    );
+  }
 };
 
 Button.propTypes = {
   buttonClass: PropTypes.string.isRequired,
-  buttonType: PropTypes.string.isRequired,
+  buttonType: PropTypes.string.isRequired, //submit, button, link
+  children: PropTypes.string.isRequired,
   buttonUrl: PropTypes.string,
-  children: PropTypes.string.isRequired
+  handleAction: PropTypes.func
 };
 
 export default Button;

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link as Enlace } from "react-router-dom";
 
 import Logo from "../common/Logo";
 import Link from "./Link";
@@ -58,9 +59,9 @@ class Links extends Component {
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light border-top border-bottom p-0">
-        <a className="navbar-brand d-lg-none" href="#">
+        <Enlace to="/" className="navbar-brand d-lg-none" href="#">
           <Logo height="25px" />
-        </a>
+        </Enlace>
         <button
           onClick={this.onCollapse}
           className="navbar-toggler border-0"

@@ -49,8 +49,8 @@ const List = props => {
                 </Button>{" "}
                 <Button
                   buttonClass="btn-danger"
-                  buttonType="link"
-                  buttonUrl="/"
+                  buttonType="button"
+                  handleAction={() => props.handleDelete(item)}
                 >
                   Delete
                 </Button>
