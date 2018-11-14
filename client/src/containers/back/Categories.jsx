@@ -17,7 +17,7 @@ class Categories extends Component {
   }
 
   render() {
-    const { categories } = this.props;
+    const { categories, keys } = this.props;
     return (
       <div>
         <div className="container">
@@ -29,7 +29,7 @@ class Categories extends Component {
               <Count value={categories.length}>categories founded</Count>
             </div>
           </div>
-          <List items={categories} />
+          <List items={categories} keys={keys} />
         </div>
       </div>
     );
@@ -37,7 +37,8 @@ class Categories extends Component {
 }
 
 const mapStateToProps = state => ({
-  categories: state.categories.items
+  categories: state.categories.items,
+  keys: state.categories.keys
 });
 
 export default connect(

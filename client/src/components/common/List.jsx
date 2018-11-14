@@ -1,18 +1,23 @@
 import React from "react";
 import Button from "../common/Button";
 
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.substring(1, str.length);
+}
+
 const List = props => {
-  const { items } = props;
-  // const array = [];
-  // array.keys;
+  const { items, keys } = props;
   return (
     <div className="text-center">
       <table className="table">
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Stories</th>
+            {keys.map(key => (
+              <th scope="col" key={key}>
+                {capitalize(key)}
+              </th>
+            ))}
             <th scope="col">Actions</th>
           </tr>
         </thead>
@@ -21,7 +26,7 @@ const List = props => {
             <tr key={item._id}>
               <th scope="row">{index + 1}</th>
               <td>{item.name}</td>
-              <td>stories</td>
+              <td />
               <td>
                 <Button
                   buttonClass="btn-warning"

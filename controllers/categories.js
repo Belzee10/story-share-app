@@ -4,7 +4,7 @@ exports.getAll = (req, res) => {
   Category.find()
     .then(data => {
       res.status(200).json({
-        count: data.length,
+        keys: ["name", "stories"],
         result: data
       });
     })
