@@ -6,7 +6,6 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
 import "bootstrap/dist/css/bootstrap.css";
-import "./assets/jam-icons.min.css";
 import "./assets/style.css";
 
 ReactDOM.render(
