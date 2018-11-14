@@ -5,6 +5,17 @@ function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.substring(1, str.length);
 }
 
+// exclude "_id" and "__v" keys
+function excludeKeys(keys) {
+  const result = [];
+  for (let i = 0; i < keys.length; i++) {
+    if (keys[i] !== "_id" && keys[i] !== "__v") {
+      result.push(keys[i]);
+    }
+  }
+  return result;
+}
+
 const List = props => {
   const { items, keys } = props;
   return (
@@ -13,7 +24,7 @@ const List = props => {
         <thead>
           <tr>
             <th scope="col">#</th>
-            {keys.map(key => (
+            {excludeKeys(keys).map(key => (
               <th scope="col" key={key}>
                 {capitalize(key)}
               </th>
@@ -25,8 +36,11 @@ const List = props => {
           {items.map((item, index) => (
             <tr key={item._id}>
               <th scope="row">{index + 1}</th>
-              <td>{item.name}</td>
-              <td />
+
+              {excludeKeys(keys).map(key => (
+                <td key={key}>{item[key]}</td>
+              ))}
+
               <td>
                 <Button
                   buttonClass="btn-warning"
