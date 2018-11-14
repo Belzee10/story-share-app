@@ -2,6 +2,7 @@ const Story = require("../models/Story");
 
 exports.getAll = (req, res) => {
   Story.find()
+    .sort({ created_at: "desc" })
     .then(data => {
       res.status(200).json({
         count: data.length,

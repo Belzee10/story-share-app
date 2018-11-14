@@ -2,6 +2,7 @@ const Category = require("../models/Category");
 
 exports.getAll = (req, res) => {
   Category.find()
+    .sort({ created_at: "desc" })
     .then(data => {
       res.status(200).json({
         keys: Object.keys(Category.schema.paths),
@@ -45,10 +46,15 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
   const id = req.params.id;
   Category.remove({ _id: id })
-    .then(data => {
-      res.status(200).json({
-        message: "Category deleted"
-      });
+    .then(() => {
+      Category.find()
+        .sort({ created_at: "desc" })
+        .then(data => {
+          res.status(200).json({
+            result: data,
+            message: "Category deleted"
+          });
+        });
     })
     .catch(err => {
       res.status(500).json(err);

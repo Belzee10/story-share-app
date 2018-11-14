@@ -10,10 +10,21 @@ class Categories extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.countMessage = this.countMessage.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchCategories();
+  }
+
+  countMessage() {
+    if (!this.props.categories.length) {
+      return "Not results";
+    } else {
+      return this.props.categories.length === 1
+        ? "Category founded"
+        : "Categories founded";
+    }
   }
 
   render() {
@@ -26,7 +37,7 @@ class Categories extends Component {
               New Category
             </Button>
             <div>
-              <Count value={categories.length}>categories founded</Count>
+              <Count value={categories.length}>{this.countMessage()}</Count>
             </div>
           </div>
           <List items={categories} keys={keys} />

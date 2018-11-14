@@ -42,7 +42,8 @@ let StorySchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: [true, "Who is this story?"]
-  }
+  },
+  created_at: { type: Date, required: true, default: Date.now }
 });
 
 module.exports = mongoose.model("Story", StorySchema);

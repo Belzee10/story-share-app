@@ -6,7 +6,8 @@ let CategorySchema = new mongoose.Schema({
     type: String,
     required: [true, "The name is required"],
     unique: true
-  }
+  },
+  created_at: { type: Date, required: true, default: Date.now }
 });
 
 CategorySchema.plugin(uniqueValidator);

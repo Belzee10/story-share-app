@@ -37,7 +37,8 @@ let UserSchema = new mongoose.Schema({
         enum: ["like", "comment"]
       }
     }
-  ]
+  ],
+  created_at: { type: Date, required: true, default: Date.now }
 });
 
 UserSchema.plugin(uniqueValidator);

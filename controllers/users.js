@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 
 exports.getAll = (req, res) => {
   User.find()
+    .sort({ created_at: "desc" })
     .then(data => {
       res.status(200).json({
         count: data.length,
