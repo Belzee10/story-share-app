@@ -16,10 +16,11 @@ class Main extends Component {
       <React.Fragment>
         <Navbar />
         <Switch>
-          <Route exact path="/" component={Home} />
           {/* admin routes */}
-          <Route exact path="/admin" component={HomeAdmin} />
           <Route path="/admin/categories" component={Categories} />
+          <Route exact path="/admin" component={HomeAdmin} />
+          {/* front routes */}
+          <Route exact path="/" component={Home} />
           <Redirect from="*" to="/" />
         </Switch>
       </React.Fragment>

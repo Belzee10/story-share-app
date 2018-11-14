@@ -1,12 +1,13 @@
 import { FETCH_CATEGORIES } from "./types";
 
 export const fetchCategories = () => dispatch => {
-  fetch("/admin/categories")
+  fetch("/api/admin/categories")
     .then(res => res.json())
-    .then(categories =>
+    .then(data =>
       dispatch({
         type: FETCH_CATEGORIES,
-        payload: categories.result
+        payload: data.result
       })
-    );
+    )
+    .catch(err => console.error(err));
 };

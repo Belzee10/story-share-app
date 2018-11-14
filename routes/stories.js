@@ -2,11 +2,11 @@ const storiesController = require("../controllers/stories");
 
 module.exports = app => {
   app
-    .route("/admin/stories")
+    .route("/api/admin/stories")
     .get(storiesController.getAll)
     .post(storiesController.save);
   app
-    .route("/admin/stories/:id")
+    .route("/api/admin/stories/:id")
     .delete(storiesController.delete)
     .patch(storiesController.update);
 };

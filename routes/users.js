@@ -2,11 +2,11 @@ const usersController = require("../controllers/users");
 
 module.exports = app => {
   app
-    .route("/admin/users")
+    .route("/api/admin/users")
     .get(usersController.getAll)
     .post(usersController.save);
   app
-    .route("/admin/users/:id")
+    .route("/api/admin/users/:id")
     .delete(usersController.delete)
     .patch(usersController.update);
 };

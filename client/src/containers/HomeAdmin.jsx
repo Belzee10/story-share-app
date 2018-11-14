@@ -11,8 +11,6 @@ class HomeAdmin extends Component {
       <div className="text-center">
         <h1>Admin Page</h1>
         <Link to="/admin/categories">Go to Categories</Link>
-        {/* <Link to="/admin/stories">Go to Stories</Link>
-        <Link to="/admin/users">Go to Users</Link> */}
       </div>
     );
   }
