@@ -5,7 +5,7 @@ exports.getAll = (req, res) => {
     .sort({ created_at: "desc" })
     .then(data => {
       res.status(200).json({
-        count: data.length,
+        keys: Object.keys(Story.schema.paths),
         result: data
       });
     })
@@ -52,10 +52,16 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
   const id = req.params.id;
   Story.remove({ _id: id })
-    .then(data => {
-      res.status(200).json({
-        message: "Story removed"
-      });
+    .then(() => {
+      Story.find()
+        .sort({ created_at: "desc" })
+        .then(data => {
+          res.status(200).json({
+            keys: Object.keys(Story.schema.paths),
+            result: data,
+            message: "Story deleted"
+          });
+        });
     })
     .catch(err => {
       res.status(500).json(err);

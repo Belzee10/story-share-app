@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class HomeAdmin extends Component {
   constructor(props) {
@@ -11,9 +10,9 @@ class HomeAdmin extends Component {
     return (
       <div className="text-center">
         <h1>Admin Page</h1>
-        <Link to="/admin/categories">Go to Categories</Link>
-        {/* <FontAwesomeIcon icon="user" /> */}{" "}
-        <Link to="/admin/users">Go to Users</Link>
+        <Link to="/admin/categories">Go to Categories</Link> |{" "}
+        <Link to="/admin/users">Go to Users</Link> |{" "}
+        <Link to="/admin/stories">Go to Stories</Link>
       </div>
     );
   }

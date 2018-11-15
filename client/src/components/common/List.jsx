@@ -5,11 +5,16 @@ function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.substring(1, str.length);
 }
 
-// exclude "_id" and "__v"
+// exclude "_id", "__v", "created_at", "password"
 function excludeKeys(keys) {
   const result = [];
   for (let i = 0; i < keys.length; i++) {
-    if (keys[i] !== "_id" && keys[i] !== "__v" && keys[i] !== "created_at") {
+    if (
+      keys[i] !== "_id" &&
+      keys[i] !== "__v" &&
+      keys[i] !== "created_at" &&
+      keys[i] !== "password"
+    ) {
       result.push(keys[i]);
     }
   }

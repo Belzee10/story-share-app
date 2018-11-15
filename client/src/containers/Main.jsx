@@ -6,6 +6,7 @@ import Home from "./Home";
 import HomeAdmin from "./HomeAdmin";
 import Categories from "./back/Categories";
 import Users from "./back/Users";
+import Stories from "./back/Stories";
 
 class Main extends Component {
   constructor(props) {
@@ -20,6 +21,7 @@ class Main extends Component {
           {/* admin routes */}
           <Route path="/admin/categories" component={Categories} />
           <Route path="/admin/users" component={Users} />
+          <Route path="/admin/stories" component={Stories} />
           <Route exact path="/admin" component={HomeAdmin} />
           {/* front routes */}
           <Route exact path="/" component={Home} />
