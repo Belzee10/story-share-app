@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import Button from "../common/Button";
 
@@ -24,6 +25,13 @@ const Row = props => {
       </td>
     </tr>
   );
+};
+
+Row.propTypes = {
+  item: PropTypes.object.isRequired,
+  excludeKeys: PropTypes.array.isRequired,
+  index: PropTypes.number.isRequired,
+  handleDelete: PropTypes.func.isRequired
 };
 
 export default Row;

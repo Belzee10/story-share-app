@@ -29,8 +29,8 @@ const Button = props => {
 Button.propTypes = {
   buttonClass: PropTypes.string.isRequired,
   buttonType: PropTypes.string.isRequired, //submit, button, link
-  children: PropTypes.string.isRequired,
   buttonUrl: PropTypes.string,
+  children: PropTypes.string.isRequired,
   handleAction: PropTypes.func
 };
 
