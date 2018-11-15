@@ -1,11 +1,8 @@
 import React from "react";
-import Button from "../common/Button";
+import Row from "./Row";
+import Thead from "./Thead";
 
-function capitalize(str) {
-  return str.charAt(0).toUpperCase() + str.substring(1, str.length);
-}
-
-// exclude "_id", "__v", "created_at", "password"
+// exclude "_id", "__v", "created_at", "password", "content", "categories"
 function excludeKeys(keys) {
   const result = [];
   for (let i = 0; i < keys.length; i++) {
@@ -13,7 +10,9 @@ function excludeKeys(keys) {
       keys[i] !== "_id" &&
       keys[i] !== "__v" &&
       keys[i] !== "created_at" &&
-      keys[i] !== "password"
+      keys[i] !== "password" &&
+      keys[i] !== "content" &&
+      keys[i] !== "categories"
     ) {
       result.push(keys[i]);
     }
@@ -21,35 +20,18 @@ function excludeKeys(keys) {
   return result;
 }
 
-function listBody(items, keys, props) {
-  if (!items.length) {
-    return (
-      <tr>
-        <td colSpan={excludeKeys(keys).length + 2}>No items found :(</td>
-      </tr>
-    );
-  }
-  return items.map((item, index) => (
-    <tr key={item._id}>
-      <th scope="row">{index + 1}</th>
-      {excludeKeys(keys).map(key => (
-        <td key={key}>{item[key]}</td>
-      ))}
-      <td>
-        <Button buttonClass="btn-warning" buttonType="link" buttonUrl="/">
-          Edit
-        </Button>{" "}
-        <Button
-          buttonClass="btn-danger"
-          buttonType="button"
-          handleAction={() => props.handleDelete(item)}
-        >
-          Delete
-        </Button>
-      </td>
-    </tr>
-  ));
-}
+// function listBody(items, keys, props) {
+//   if (!items.length) {
+//     return (
+//       <tr>
+//         <td colSpan={excludeKeys(keys).length + 2}>No items found :(</td>
+//       </tr>
+//     );
+//   }
+//   return items.map((item, index) => (
+
+//   ));
+// }
 
 const List = props => {
   const { items, keys } = props;
@@ -57,17 +39,19 @@ const List = props => {
     <div className="text-center">
       <table className="table">
         <thead>
-          <tr>
-            <th scope="col">#</th>
-            {excludeKeys(keys).map(key => (
-              <th scope="col" key={key}>
-                {capitalize(key)}
-              </th>
-            ))}
-            <th scope="col">Actions</th>
-          </tr>
+          <Thead excludeKeys={excludeKeys(keys)} />
         </thead>
-        <tbody>{listBody(items, keys, props)}</tbody>
+        <tbody>
+          {items.map((item, index) => (
+            <Row
+              item={item}
+              excludeKeys={excludeKeys(keys)}
+              index={index}
+              key={item._id}
+              handleDelete={props.handleDelete}
+            />
+          ))}
+        </tbody>
       </table>
     </div>
   );
