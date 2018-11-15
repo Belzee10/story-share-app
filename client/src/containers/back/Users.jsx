@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchCategories, deleteCategory } from "../../actions/categoryActions";
+import { fetchUsers, deleteUser } from "../../actions/userActions";
 
 import List from "../../components/common/List";
 import Button from "../../components/common/Button";
 import Count from "../../components/common/Count";
 
-class Categories extends Component {
+class Users extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -16,48 +16,46 @@ class Categories extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchCategories();
+    this.props.fetchUsers();
   }
 
   countMessage() {
-    return this.props.categories.length === 1
-      ? "Category founded"
-      : "Categories founded";
+    return this.props.users.length === 1 ? "User founded" : "Users founded";
   }
 
   handleDelete(item) {
-    this.props.deleteCategory(item._id);
+    this.props.deleteUser(item._id);
   }
 
   render() {
-    const { categories, keys } = this.props;
+    const { users, keys } = this.props;
     return (
       <div className="container">
         <div className="d-flex justify-content-between mb-2">
           <Button buttonUrl="/" buttonClass="btn-dark" buttonType="link">
-            New Category
+            New User
           </Button>
           <div>
-            <Count value={categories.length}>{this.countMessage()}</Count>
+            <Count value={users.length}>{this.countMessage()}</Count>
           </div>
         </div>
-        <List handleDelete={this.handleDelete} items={categories} keys={keys} />
+        <List handleDelete={this.handleDelete} items={users} keys={keys} />
       </div>
     );
   }
 }
 
-Categories.propTypes = {
-  fetchCategories: PropTypes.func.isRequired,
-  deleteCategory: PropTypes.func.isRequired
+Users.propTypes = {
+  fetchUsers: PropTypes.func.isRequired,
+  deleteUser: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  categories: state.categories.items,
-  keys: state.categories.keys
+  users: state.users.items,
+  keys: state.users.keys
 });
 
 export default connect(
   mapStateToProps,
-  { fetchCategories, deleteCategory }
-)(Categories);
+  { fetchUsers, deleteUser }
+)(Users);

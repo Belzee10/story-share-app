@@ -6,7 +6,7 @@ exports.getAll = (req, res) => {
     .sort({ created_at: "desc" })
     .then(data => {
       res.status(200).json({
-        count: data.length,
+        keys: Object.keys(User.schema.paths),
         result: data
       });
     })
@@ -67,10 +67,16 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
   const id = req.params.id;
   User.remove({ _id: id })
-    .then(data => {
-      res.status(200).json({
-        message: "User deleted"
-      });
+    .then(() => {
+      User.find()
+        .sort({ created_at: "desc" })
+        .then(data => {
+          res.status(200).json({
+            keys: Object.keys(User.schema.paths),
+            result: data,
+            message: "User deleted"
+          });
+        });
     })
     .catch(err => {
       res.status(500).json(err);

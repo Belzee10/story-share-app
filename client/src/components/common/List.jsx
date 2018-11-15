@@ -16,6 +16,36 @@ function excludeKeys(keys) {
   return result;
 }
 
+function listBody(items, keys, props) {
+  if (!items.length) {
+    return (
+      <tr>
+        <td colSpan={excludeKeys(keys).length + 2}>No items found :(</td>
+      </tr>
+    );
+  }
+  return items.map((item, index) => (
+    <tr key={item._id}>
+      <th scope="row">{index + 1}</th>
+      {excludeKeys(keys).map(key => (
+        <td key={key}>{item[key]}</td>
+      ))}
+      <td>
+        <Button buttonClass="btn-warning" buttonType="link" buttonUrl="/">
+          Edit
+        </Button>{" "}
+        <Button
+          buttonClass="btn-danger"
+          buttonType="button"
+          handleAction={() => props.handleDelete(item)}
+        >
+          Delete
+        </Button>
+      </td>
+    </tr>
+  ));
+}
+
 const List = props => {
   const { items, keys } = props;
   return (
@@ -32,32 +62,7 @@ const List = props => {
             <th scope="col">Actions</th>
           </tr>
         </thead>
-        <tbody>
-          {items.map((item, index) => (
-            <tr key={item._id}>
-              <th scope="row">{index + 1}</th>
-              {excludeKeys(keys).map(key => (
-                <td key={key}>{item[key]}</td>
-              ))}
-              <td>
-                <Button
-                  buttonClass="btn-warning"
-                  buttonType="link"
-                  buttonUrl="/"
-                >
-                  Edit
-                </Button>{" "}
-                <Button
-                  buttonClass="btn-danger"
-                  buttonType="button"
-                  handleAction={() => props.handleDelete(item)}
-                >
-                  Delete
-                </Button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
+        <tbody>{listBody(items, keys, props)}</tbody>
       </table>
     </div>
   );

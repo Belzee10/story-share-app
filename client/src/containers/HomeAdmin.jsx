@@ -12,7 +12,8 @@ class HomeAdmin extends Component {
       <div className="text-center">
         <h1>Admin Page</h1>
         <Link to="/admin/categories">Go to Categories</Link>
-        <FontAwesomeIcon icon="user" />
+        {/* <FontAwesomeIcon icon="user" /> */}{" "}
+        <Link to="/admin/users">Go to Users</Link>
       </div>
     );
   }
