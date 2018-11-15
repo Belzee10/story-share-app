@@ -2,6 +2,19 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import Button from "../common/Button";
+import Date from "../common/Date";
+
+const dateStyle = {
+  color: "#212529",
+  fontSize: "1rem"
+};
+
+function cellType(item, key) {
+  if (key === "publishDate") {
+    return <Date date={item[key]} style={dateStyle} />;
+  }
+  return item[key];
+}
 
 const Row = props => {
   const { item, excludeKeys, index } = props;
@@ -9,7 +22,7 @@ const Row = props => {
     <tr>
       <th scope="row">{index + 1}</th>
       {excludeKeys.map(key => (
-        <td key={key}>{item[key]}</td>
+        <td key={key}>{cellType(item, key)}</td>
       ))}
       <td>
         <Button buttonClass="btn-warning" buttonType="link" buttonUrl="/">
