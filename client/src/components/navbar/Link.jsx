@@ -1,11 +1,12 @@
 import React from "react";
+import { Link as Enlace } from "react-router-dom";
 
 const Link = props => {
   return (
     <li className="nav-item text-uppercase mr-3">
-      <a className="nav-link" href="#">
+      <Enlace to="/" className="nav-link">
         {props.link.name}
-      </a>
+      </Enlace>
     </li>
   );
 };

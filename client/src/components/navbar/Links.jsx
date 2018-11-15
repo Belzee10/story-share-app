@@ -59,7 +59,7 @@ class Links extends Component {
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light border-top border-bottom p-0">
-        <Enlace to="/" className="navbar-brand d-lg-none" href="#">
+        <Enlace to="/" className="navbar-brand d-lg-none">
           <Logo height="25px" />
         </Enlace>
         <button
@@ -80,9 +80,9 @@ class Links extends Component {
               <Link link={link} key={link.id} />
             ))}
             <li className="nav-item d-lg-none">
-              <a href="#" className="btn btn-dark btn-sm">
+              <Enlace to="/" className="btn btn-dark btn-sm">
                 Sign Up
-              </a>
+              </Enlace>
             </li>
           </ul>
         </div>
