@@ -1,8 +1,13 @@
-import { FETCH_CATEGORIES, DELETE_CATEGORY } from "../actions/types";
+import {
+  FETCH_CATEGORIES,
+  DELETE_CATEGORY,
+  CREATE_CATEGORY
+} from "../actions/types";
 
 const initialState = {
   items: [],
-  keys: []
+  keys: [],
+  message: ""
 };
 
 export default function(state = initialState, action) {
@@ -18,6 +23,11 @@ export default function(state = initialState, action) {
         ...state,
         items: action.payload.result,
         keys: action.payload.keys
+      };
+    case CREATE_CATEGORY:
+      return {
+        ...state,
+        message: action.payload.message
       };
     default:
       return state;

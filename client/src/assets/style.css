@@ -176,6 +176,8 @@ span.badge {
   background-color: #e4e4e4;
   color: #464646;
 }
+.btn-secondary,
+.btn-primary,
 .btn-dark,
 .btn-warning,
 .btn-danger {

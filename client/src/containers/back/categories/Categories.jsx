@@ -37,7 +37,11 @@ class Categories extends Component {
     return (
       <div className="container">
         <div className="d-flex justify-content-between mb-2">
-          <Button buttonUrl="/" buttonClass="btn-dark" buttonType="link">
+          <Button
+            buttonUrl="/admin/categories/new"
+            buttonClass="btn-dark"
+            buttonType="link"
+          >
             New Category
           </Button>
           <div>
