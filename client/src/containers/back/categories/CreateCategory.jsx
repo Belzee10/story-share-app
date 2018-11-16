@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createCategory } from "../../../actions/categoryActions";
 import PropTypes from "prop-types";
+import FormValidator from "../../../utiles/FormValidator";
 
 import Button from "../../../components/common/Button";
 import InvalidFeedback from "../../../components/common/InvalidFeedback";
@@ -9,11 +10,19 @@ import InvalidFeedback from "../../../components/common/InvalidFeedback";
 class CreateCategory extends Component {
   constructor(props) {
     super(props);
+    this.validator = new FormValidator([
+      {
+        field: "name",
+        method: "isEmpty",
+        validWhen: false,
+        message: "Name is required."
+      }
+    ]);
     this.state = {
       name: "",
-      lastName: "",
-      invalid: {}
+      validation: this.validator.valid()
     };
+    this.submitted = false;
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
@@ -26,14 +35,22 @@ class CreateCategory extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    const category = {
-      name: this.state.name
-    };
-    this.props.createCategory(category);
+    const validation = this.validator.validate(this.state);
+    this.setState({ validation });
+    this.submitted = true;
+    if (validation.isValid) {
+      const category = {
+        name: this.state.name
+      };
+      this.props.createCategory(category);
+    }
   }
 
   render() {
-    const { name, lastName } = this.state;
+    const { name } = this.state;
+    let validation = this.submitted
+      ? this.validator.validate(this.state)
+      : this.state.validation;
     return (
       <div className="container">
         <div className="row">
@@ -50,19 +67,10 @@ class CreateCategory extends Component {
                       type="text"
                       id="name"
                       name="name"
-                      className="form-control"
+                      className={`form-control ${validation.name.isInvalid &&
+                        "is-invalid"}`}
                     />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="lastName">Last Name:</label>
-                    <input
-                      value={lastName}
-                      onChange={this.onChange}
-                      type="text"
-                      id="lastName"
-                      name="lastName"
-                      className="form-control"
-                    />
+                    <InvalidFeedback>{validation.name.message}</InvalidFeedback>
                   </div>
                   <div className="form-group">
                     <Button buttonClass="btn-primary" buttonType="submit">
