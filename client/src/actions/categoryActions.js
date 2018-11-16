@@ -1,4 +1,5 @@
 import { FETCH_CATEGORIES, DELETE_CATEGORY, CREATE_CATEGORY } from "./types";
+import { API_ADMIN_URL } from "../config";
 
 const headers = {
   "Content-Type": "application/json",
@@ -6,7 +7,7 @@ const headers = {
 };
 
 export const fetchCategories = () => dispatch => {
-  fetch("/api/admin/categories", headers)
+  fetch(`${API_ADMIN_URL}/categories`, headers)
     .then(res => res.json())
     .then(data =>
       dispatch({
@@ -18,7 +19,7 @@ export const fetchCategories = () => dispatch => {
 };
 
 export const deleteCategory = categoryId => dispatch => {
-  fetch("/api/admin/categories/" + categoryId, {
+  fetch(`${API_ADMIN_URL}/categories/` + categoryId, {
     headers,
     method: "DELETE"
   })
@@ -32,7 +33,7 @@ export const deleteCategory = categoryId => dispatch => {
 };
 
 export const createCategory = category => dispatch => {
-  fetch("/api/admin/categories", {
+  fetch(`${API_ADMIN_URL}/categories`, {
     headers,
     method: "POST",
     body: JSON.stringify(category)

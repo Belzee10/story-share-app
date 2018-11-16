@@ -1,4 +1,5 @@
 import { FETCH_USERS, DELETE_USER } from "./types";
+import { API_ADMIN_URL } from "../config";
 
 const headers = {
   "Content-Type": "application/json",
@@ -6,7 +7,7 @@ const headers = {
 };
 
 export const fetchUsers = () => dispatch => {
-  fetch("/api/admin/users", headers)
+  fetch(`${API_ADMIN_URL}/users`, headers)
     .then(res => res.json())
     .then(data =>
       dispatch({
@@ -18,7 +19,7 @@ export const fetchUsers = () => dispatch => {
 };
 
 export const deleteUser = userId => dispatch => {
-  fetch("/api/admin/users/" + userId, {
+  fetch(`${API_ADMIN_URL}/users/` + userId, {
     headers,
     method: "DELETE"
   })

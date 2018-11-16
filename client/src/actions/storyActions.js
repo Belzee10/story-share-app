@@ -1,4 +1,5 @@
 import { FETCH_STORIES, DELETE_STORY } from "./types";
+import { API_ADMIN_URL } from "../config";
 
 const headers = {
   "Content-Type": "application/json",
@@ -6,7 +7,7 @@ const headers = {
 };
 
 export const fetchStories = () => dispatch => {
-  fetch("/api/admin/stories", headers)
+  fetch(`${API_ADMIN_URL}/stories`, headers)
     .then(res => res.json())
     .then(data =>
       dispatch({
@@ -18,7 +19,7 @@ export const fetchStories = () => dispatch => {
 };
 
 export const deleteStory = storyId => dispatch => {
-  fetch("/api/admin/stories/" + storyId, {
+  fetch(`${API_ADMIN_URL}/stories/` + storyId, {
     headers,
     method: "DELETE"
   })
