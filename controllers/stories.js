@@ -3,7 +3,9 @@ const Story = require("../models/Story");
 exports.getAll = (req, res) => {
   Story.find()
     .sort({ created_at: "desc" })
+    .populate("author")
     .then(data => {
+      // console.log(data);
       res.status(200).json({
         keys: Object.keys(Story.schema.paths),
         result: data

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import Button from "../common/Button";
 import Date from "../common/Date";
@@ -10,10 +11,20 @@ const dateStyle = {
 };
 
 function cellType(item, key) {
-  if (key === "publishDate") {
-    return <Date date={item[key]} style={dateStyle} />;
+  switch (key) {
+    case "publishDate":
+      return <Date date={item[key]} style={dateStyle} />;
+    case "comments":
+      return (
+        <React.Fragment>
+          {item[key].length} <FontAwesomeIcon icon="comments" />
+        </React.Fragment>
+      );
+    case "author":
+      return item[key].fullName;
+    default:
+      return item[key];
   }
-  return item[key];
 }
 
 const Row = props => {

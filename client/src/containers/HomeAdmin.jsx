@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class HomeAdmin extends Component {
   constructor(props) {
@@ -8,11 +9,22 @@ class HomeAdmin extends Component {
   }
   render() {
     return (
-      <div className="text-center">
-        <h1>Admin Page</h1>
-        <Link to="/admin/categories">Go to Categories</Link> |{" "}
-        <Link to="/admin/users">Go to Users</Link> |{" "}
-        <Link to="/admin/stories">Go to Stories</Link>
+      <div className="container home-admin text-center">
+        <h1>Welcome Admin</h1>
+        <div className="manage-links">
+          <Link className="btn btn-light" to="/admin/categories">
+            <FontAwesomeIcon icon="check" />
+            Manage Categories
+          </Link>
+          <Link className="btn btn-light" to="/admin/users">
+            <FontAwesomeIcon icon="user" />
+            Manage Users
+          </Link>
+          <Link className="btn btn-light" to="/admin/stories">
+            <FontAwesomeIcon icon="list" />
+            Manage Stories
+          </Link>
+        </div>
       </div>
     );
   }

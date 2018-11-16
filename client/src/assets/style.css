@@ -498,6 +498,25 @@ span.like-cant {
   padding: 6px 12px;
 }
 
+.manage-links {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2rem;
+}
+.manage-links a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 150px;
+  min-height: 150px;
+  text-transform: capitalize;
+}
+.manage-links a svg {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
 @media (min-width: 576px) {
   #stories h5 {
     padding-top: 0;
@@ -514,5 +533,8 @@ span.like-cant {
 @media (min-width: 1200px) {
   .story-actions {
     left: 10rem;
+  }
+  .home-admin.container {
+    max-width: 800px;
   }
 }
