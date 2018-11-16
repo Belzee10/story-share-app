@@ -16,13 +16,13 @@ class HomeAdmin extends Component {
             <FontAwesomeIcon icon="check" />
             Manage Categories
           </Link>
-          <Link className="btn btn-light" to="/admin/users">
-            <FontAwesomeIcon icon="user" />
-            Manage Users
-          </Link>
           <Link className="btn btn-light" to="/admin/stories">
             <FontAwesomeIcon icon="list" />
             Manage Stories
+          </Link>
+          <Link className="btn btn-light" to="/admin/users">
+            <FontAwesomeIcon icon="user" />
+            Manage Users
           </Link>
         </div>
       </div>

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchUsers, deleteUser } from "../../actions/userActions";
+import { fetchUsers, deleteUser } from "../../../actions/userActions";
 
-import List from "../../components/common/List";
-import Button from "../../components/common/Button";
-import Count from "../../components/common/Count";
+import List from "../../../components/common/List";
+import Button from "../../../components/common/Button";
+import Count from "../../../components/common/Count";
 
 class Users extends Component {
   constructor(props) {

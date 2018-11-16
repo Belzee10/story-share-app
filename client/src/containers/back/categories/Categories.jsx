@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchCategories, deleteCategory } from "../../actions/categoryActions";
+import {
+  fetchCategories,
+  deleteCategory
+} from "../../../actions/categoryActions";
 
-import List from "../../components/common/List";
-import Button from "../../components/common/Button";
-import Count from "../../components/common/Count";
+import List from "../../../components/common/List";
+import Button from "../../../components/common/Button";
+import Count from "../../../components/common/Count";
 
 class Categories extends Component {
   constructor(props) {
