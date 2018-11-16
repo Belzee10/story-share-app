@@ -43,6 +43,10 @@ class CreateCategory extends Component {
         name: this.state.name
       };
       this.props.createCategory(category);
+      this.setState({
+        name: ""
+      });
+      this.submitted = false;
     }
   }
 
@@ -73,7 +77,11 @@ class CreateCategory extends Component {
                     <InvalidFeedback>{validation.name.message}</InvalidFeedback>
                   </div>
                   <div className="form-group">
-                    <Button buttonClass="btn-primary" buttonType="submit">
+                    <Button
+                      disabled={!validation.isValid && true}
+                      buttonClass="btn-primary"
+                      buttonType="submit"
+                    >
                       Create
                     </Button>{" "}
                     <Button
