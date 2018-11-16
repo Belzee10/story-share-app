@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createCategory } from "../../../actions/categoryActions";
+import PropTypes from "prop-types";
 
-import Button from "../../../components/common//Button";
+import Button from "../../../components/common/Button";
+import InvalidFeedback from "../../../components/common/InvalidFeedback";
 
 class CreateCategory extends Component {
   constructor(props) {
@@ -14,10 +16,23 @@ class CreateCategory extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  validate(element) {
+    const { name, value } = element;
+    switch (name) {
+      case "name":
+        return {
+          name: value.length === 0 ? `${name} is required` : false
+        };
+      default:
+        return;
+    }
+  }
+
   onChange(e) {
     this.setState({
       [e.target.name]: e.target.value
     });
+    this.validate(e.target);
   }
 
   onSubmit(e) {
@@ -46,8 +61,9 @@ class CreateCategory extends Component {
                       type="text"
                       id="name"
                       name="name"
-                      className="form-control"
+                      className="form-control is-invalid"
                     />
+                    {/* <div className="invalid-feedback">Looks good!</div> */}
                   </div>
                   <div className="form-group">
                     <Button buttonClass="btn-primary" buttonType="submit">
@@ -70,6 +86,10 @@ class CreateCategory extends Component {
     );
   }
 }
+
+CreateCategory.propTypes = {
+  createCategory: PropTypes.func.isRequired
+};
 
 const mapStateToProps = state => ({
   message: state.categories.message
