@@ -10,29 +10,18 @@ class CreateCategory extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: ""
+      name: "",
+      lastName: "",
+      invalid: {}
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-  }
-
-  validate(element) {
-    const { name, value } = element;
-    switch (name) {
-      case "name":
-        return {
-          name: value.length === 0 ? `${name} is required` : false
-        };
-      default:
-        return;
-    }
   }
 
   onChange(e) {
     this.setState({
       [e.target.name]: e.target.value
     });
-    this.validate(e.target);
   }
 
   onSubmit(e) {
@@ -44,7 +33,7 @@ class CreateCategory extends Component {
   }
 
   render() {
-    const { name } = this.state;
+    const { name, lastName } = this.state;
     return (
       <div className="container">
         <div className="row">
@@ -61,9 +50,19 @@ class CreateCategory extends Component {
                       type="text"
                       id="name"
                       name="name"
-                      className="form-control is-invalid"
+                      className="form-control"
                     />
-                    {/* <div className="invalid-feedback">Looks good!</div> */}
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="lastName">Last Name:</label>
+                    <input
+                      value={lastName}
+                      onChange={this.onChange}
+                      type="text"
+                      id="lastName"
+                      name="lastName"
+                      className="form-control"
+                    />
                   </div>
                   <div className="form-group">
                     <Button buttonClass="btn-primary" buttonType="submit">
