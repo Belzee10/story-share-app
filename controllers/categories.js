@@ -21,7 +21,7 @@ exports.save = (req, res) => {
     .save()
     .then(data => {
       res.status(201).json({
-        message: "Category created",
+        message: "Category created successful!",
         result: category
       });
     })

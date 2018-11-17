@@ -7,6 +7,7 @@ import {
 const initialState = {
   items: [],
   keys: [],
+  newCategory: {},
   message: ""
 };
 
@@ -27,6 +28,7 @@ export default function(state = initialState, action) {
     case CREATE_CATEGORY:
       return {
         ...state,
+        newCategory: action.payload.result,
         message: action.payload.message
       };
     default:

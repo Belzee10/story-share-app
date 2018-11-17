@@ -6,6 +6,7 @@ import FormValidator from "../../../utiles/FormValidator";
 
 import Button from "../../../components/common/Button";
 import InvalidFeedback from "../../../components/common/InvalidFeedback";
+import Alert from "../../../components/common//Alert";
 
 class CreateCategory extends Component {
   constructor(props) {
@@ -20,11 +21,22 @@ class CreateCategory extends Component {
     ]);
     this.state = {
       name: "",
-      validation: this.validator.valid()
+      validation: this.validator.valid(),
+      showAlert: false
     };
     this.submitted = false;
+    this.timer = null;
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.afterSubmit = this.afterSubmit.bind(this);
+    this.handleTimeOut = this.handleTimeOut.bind(this);
+  }
+
+  componentWillUnmount() {
+    if (this.timer) {
+      clearTimeout(this.timer);
+      this.timer = null;
+    }
   }
 
   onChange(e) {
@@ -43,15 +55,36 @@ class CreateCategory extends Component {
         name: this.state.name
       };
       this.props.createCategory(category);
-      this.setState({
-        name: ""
-      });
+      this.afterSubmit();
       this.submitted = false;
     }
   }
 
+  handleTimeOut() {
+    if (this.timer) {
+      clearTimeout(this.timer);
+      this.timer = null;
+    }
+    this.timer = setTimeout(() => {
+      this.setState({
+        showAlert: false
+      });
+    }, 3000);
+  }
+
+  afterSubmit() {
+    this.setState(
+      prevState => {
+        return { showAlert: (prevState.showAlert = true), name: "" };
+      },
+      () => {
+        this.handleTimeOut();
+      }
+    );
+  }
+
   render() {
-    const { name } = this.state;
+    const { name, showAlert } = this.state;
     let validation = this.submitted
       ? this.validator.validate(this.state)
       : this.state.validation;
@@ -95,6 +128,11 @@ class CreateCategory extends Component {
                 </form>
               </div>
             </div>
+          </div>
+          <div className="col-lg-6">
+            {showAlert && (
+              <Alert alertType="success">Category created successfuly!</Alert>
+            )}
           </div>
         </div>
       </div>
