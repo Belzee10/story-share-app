@@ -1,4 +1,4 @@
-import { FETCH_USERS, DELETE_USER } from "./types";
+import { FETCH_USERS, DELETE_USER, CREATE_USER } from "./types";
 import { API_ADMIN_URL } from "../config";
 
 const headers = {
@@ -27,6 +27,21 @@ export const deleteUser = userId => dispatch => {
     .then(data =>
       dispatch({
         type: DELETE_USER,
+        payload: data
+      })
+    );
+};
+
+export const createUser = user => dispatch => {
+  fetch(`${API_ADMIN_URL}/users`, {
+    headers,
+    method: "POST",
+    body: JSON.stringify(user)
+  })
+    .then(res => res.json())
+    .then(data =>
+      dispatch({
+        type: CREATE_USER,
         payload: data
       })
     );

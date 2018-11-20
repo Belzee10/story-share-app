@@ -38,7 +38,7 @@ exports.save = (req, res) => {
             .save()
             .then(data => {
               res.status(201).json({
-                message: "User created",
+                message: "User created successful!",
                 result: user
               });
             })

@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { createUser } from "../../../actions/userActions";
+import PropTypes from "prop-types";
 import FormValidator from "../../../utiles/FormValidator";
 
 import Button from "../../../components/common/Button";
@@ -90,8 +93,8 @@ class CreateUser extends Component {
         password: this.state.password,
         role: this.state.role
       };
-      // this.props.createCategory(category);
-      // this.afterSubmit();
+      this.props.createUser(user);
+      this.afterSubmit();
       this.submitted = false;
     }
   }
@@ -175,7 +178,11 @@ class CreateUser extends Component {
                   </div>
 
                   <div className="form-group">
-                    <Button buttonClass="btn-primary" buttonType="submit">
+                    <Button
+                      disabled={!validation.isValid && true}
+                      buttonClass="btn-primary"
+                      buttonType="submit"
+                    >
                       Create
                     </Button>{" "}
                     <Button
@@ -196,4 +203,15 @@ class CreateUser extends Component {
   }
 }
 
-export default CreateUser;
+CreateUser.propTypes = {
+  createUser: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  message: state.users.message
+});
+
+export default connect(
+  mapStateToProps,
+  { createUser }
+)(CreateUser);
