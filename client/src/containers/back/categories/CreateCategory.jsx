@@ -69,7 +69,7 @@ class CreateCategory extends Component {
       this.setState({
         showAlert: false
       });
-    }, 3000);
+    }, 2000);
   }
 
   afterSubmit() {
