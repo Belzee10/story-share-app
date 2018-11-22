@@ -8,7 +8,7 @@ function capitalize(str) {
 const Thead = props => {
   const { excludeKeys } = props;
   return (
-    <tr>
+    <tr className="foo">
       <th scope="col">#</th>
       {excludeKeys.map(key => (
         <th scope="col" key={key}>
@@ -21,7 +21,7 @@ const Thead = props => {
 };
 
 Thead.propTypes = {
-  excludeKeys: PropTypes.func.isRequired
+  excludeKeys: PropTypes.array.isRequired
 };
 
 export default Thead;
