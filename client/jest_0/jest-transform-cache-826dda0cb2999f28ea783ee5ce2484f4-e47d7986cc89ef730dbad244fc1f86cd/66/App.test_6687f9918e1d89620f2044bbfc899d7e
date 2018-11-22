@@ -1,0 +1,16 @@
+979ceb39025e13d6ac6ffc8cee96f5ea
+"use strict";
+
+var _interopRequireDefault = require("/home/belzee/projects/story-share-project/story-share-app/client/node_modules/babel-preset-react-app/node_modules/@babel/runtime/helpers/interopRequireDefault");
+
+var _react = _interopRequireDefault(require("react"));
+
+var _reactDom = _interopRequireDefault(require("react-dom"));
+
+var _App = _interopRequireDefault(require("./App"));
+
+it("renders without crashing", () => {// const div = document.createElement("div");
+  // ReactDOM.render(<App />, div);
+  // ReactDOM.unmountComponentAtNode(div);
+});
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkFwcC50ZXN0LmpzIl0sIm5hbWVzIjpbIml0Il0sIm1hcHBpbmdzIjoiOzs7O0FBQUE7O0FBQ0E7O0FBQ0E7O0FBRUFBLEVBQUUsQ0FBQywwQkFBRCxFQUE2QixNQUFNLENBQ25DO0FBQ0E7QUFDQTtBQUNELENBSkMsQ0FBRiIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCBmcm9tIFwicmVhY3RcIjtcbmltcG9ydCBSZWFjdERPTSBmcm9tIFwicmVhY3QtZG9tXCI7XG5pbXBvcnQgQXBwIGZyb20gXCIuL0FwcFwiO1xuXG5pdChcInJlbmRlcnMgd2l0aG91dCBjcmFzaGluZ1wiLCAoKSA9PiB7XG4gIC8vIGNvbnN0IGRpdiA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIik7XG4gIC8vIFJlYWN0RE9NLnJlbmRlcig8QXBwIC8+LCBkaXYpO1xuICAvLyBSZWFjdERPTS51bm1vdW50Q29tcG9uZW50QXROb2RlKGRpdik7XG59KTtcbiJdfQ==

@@ -1,0 +1,1 @@
+{"version":3,"sources":["setupTests.js"],"names":["adapter","Adapter"],"mappings":";;;;AAAA;;AACA;;AACA,uBAAU;AAAEA,EAAAA,OAAO,EAAE,IAAIC,2BAAJ;AAAX,CAAV","sourcesContent":["import { configure } from \"enzyme\";\nimport Adapter from \"enzyme-adapter-react-16\";\nconfigure({ adapter: new Adapter() });\n"]}
