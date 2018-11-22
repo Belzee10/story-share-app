@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.substring(1, str.length);
@@ -17,6 +18,10 @@ const Thead = props => {
       <th scope="col">Actions</th>
     </tr>
   );
+};
+
+Thead.propTypes = {
+  excludeKeys: PropTypes.func.isRequired
 };
 
 export default Thead;
