@@ -9,6 +9,7 @@ import Users from "./back/users/Users";
 import Stories from "./back/stories/Stories";
 import CreateCategory from "./back/categories/CreateCategory";
 import CreateUser from "./back/users/CreateUser";
+import CreateStory from "./back/stories/CreateStory";
 
 class Main extends Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class Main extends Component {
           <Route path="/admin/users/new" component={CreateUser} />
           <Route path="/admin/users" component={Users} />
 
+          <Route path="/admin/stories/new" component={CreateStory} />
           <Route path="/admin/stories" component={Stories} />
 
           <Route exact path="/admin" component={HomeAdmin} />

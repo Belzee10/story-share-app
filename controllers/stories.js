@@ -5,7 +5,6 @@ exports.getAll = (req, res) => {
     .sort({ created_at: "desc" })
     .populate("author")
     .then(data => {
-      // console.log(data);
       res.status(200).json({
         keys: Object.keys(Story.schema.paths),
         result: data
@@ -29,7 +28,7 @@ exports.save = (req, res) => {
     .save()
     .then(data => {
       res.status(201).json({
-        message: "Story created",
+        message: "Story created successful!",
         result: data
       });
     })
