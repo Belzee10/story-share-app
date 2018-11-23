@@ -16,7 +16,7 @@ exports.getAll = (req, res) => {
 };
 
 exports.save = (req, res) => {
-  const { fullName, avatar, email, password, role } = req.body;
+  const { fullName, email, password, role } = req.body;
   User.find({ email }).then(data => {
     if (data.length > 0) {
       return res.status(409).json({
@@ -27,9 +27,20 @@ exports.save = (req, res) => {
         if (err) {
           return res.status(500).json(err);
         } else {
+          let avatarName = "";
+          if (Object.keys(req.files).length != 0) {
+            const avatarFile = req.files.avatar;
+            avatarName =
+              email.split("@")[0] + "." + avatarFile.name.split(".")[1];
+            avatarFile.mv("uploads/avatars/" + avatarName, err => {
+              if (err) return res.status(500).json(err);
+              console.log("File uploaded");
+            });
+          }
+
           const user = new User({
             fullName,
-            avatar,
+            avatar: avatarName,
             email,
             password,
             role
