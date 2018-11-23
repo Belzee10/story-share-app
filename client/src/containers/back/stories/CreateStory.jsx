@@ -55,15 +55,15 @@ class CreateStory extends Component {
                     <label htmlFor="categories">Categories:</label>
                     <select
                       multiple={true}
-                      value={["B", "C"]}
+                      value={categories}
                       onChange={this.onChange}
                       name="categories"
                       id="categories"
                       className={`form-control`}
                     >
                       <option value="">--Categories--</option>
-                      <option value="">Category 1</option>
-                      <option value="">Category 2</option>
+                      <option value="cat-1">Category 1</option>
+                      <option value="cat-2">Category 2</option>
                     </select>
                   </div>
                 </form>
