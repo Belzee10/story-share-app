@@ -8,3 +8,4 @@ export const CREATE_USER = "CREATE_USER";
 
 export const FETCH_STORIES = "FETCH_STORIES";
 export const DELETE_STORY = "DELETE_STORY";
+export const CREATE_STORY = "CREATE_STORY";

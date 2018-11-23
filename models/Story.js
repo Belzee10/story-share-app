@@ -22,8 +22,7 @@ let StorySchema = new mongoose.Schema({
   categories: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Category",
-      required: [true, "You must select a category"]
+      ref: "Category"
     }
   ],
   comments: [

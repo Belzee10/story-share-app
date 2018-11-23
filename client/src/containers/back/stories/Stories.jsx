@@ -17,7 +17,6 @@ class Stories extends Component {
 
   componentDidMount() {
     this.props.fetchStories();
-    console.log(this.props.stories);
   }
 
   countMessage() {
