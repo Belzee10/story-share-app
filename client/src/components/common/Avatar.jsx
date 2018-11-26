@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+// import { API_FILES_URL } from "../../config";
 
 const Avatar = props => {
   const { image, alt, dimensions } = props;

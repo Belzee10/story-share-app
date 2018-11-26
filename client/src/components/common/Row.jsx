@@ -4,15 +4,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import Button from "../common/Button";
 import Date from "../common/Date";
-
-const dateStyle = {
-  color: "#212529",
-  fontSize: "1rem"
-};
+import Avatar from "../common/Avatar";
 
 function cellType(item, key) {
   switch (key) {
     case "publishDate":
+      const dateStyle = {
+        color: "#212529",
+        fontSize: "1rem"
+      };
       return <Date date={item[key]} style={dateStyle} />;
     case "comments":
       return (
@@ -22,6 +22,14 @@ function cellType(item, key) {
       );
     case "author":
       return item[key].fullName;
+    case "avatar":
+      const dimensions = {
+        width: "30px",
+        height: "30px"
+      };
+      return (
+        <Avatar image={item[key]} alt={item[key]} dimensions={dimensions} />
+      );
     default:
       return item[key];
   }

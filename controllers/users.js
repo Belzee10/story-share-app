@@ -32,15 +32,16 @@ exports.save = (req, res) => {
             const avatarFile = req.files.avatar;
             avatarName =
               email.split("@")[0] + "." + avatarFile.name.split(".")[1];
-            avatarFile.mv("uploads/avatars/" + avatarName, err => {
+
+            avatarFile.mv(`./public/${avatarName}`, err => {
               if (err) return res.status(500).json(err);
-              console.log("File uploaded");
+              console.log("File uploade");
             });
           }
 
           const user = new User({
             fullName,
-            avatar: avatarName,
+            avatar: `./public/${avatarName}`,
             email,
             password,
             role
