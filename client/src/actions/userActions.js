@@ -6,10 +6,10 @@ const headers = {
   Accept: "application/json"
 };
 
-const headersMultipart = {
-  "Content-Type": "multipart/form-data",
-  Accept: "application/json"
-};
+// const headersMultipart = {
+//   "Content-Type": "multipart/form-data",
+//   Accept: "application/json"
+// };
 
 export const fetchUsers = () => dispatch => {
   fetch(`${API_ADMIN_URL}/users`, headers)
@@ -37,18 +37,11 @@ export const deleteUser = userId => dispatch => {
     );
 };
 
-export const createUser = (user, avatarFile) => dispatch => {
-  const formData = new FormData();
-  formData.append("avatar", avatarFile);
-  formData.append("fullName", user.fullName);
-  formData.append("email", user.email);
-  formData.append("password", user.password);
-  formData.append("role", user.role);
-
+export const createUser = user => dispatch => {
   fetch(`${API_ADMIN_URL}/users`, {
-    headersMultipart,
+    headers,
     method: "POST",
-    body: formData
+    body: JSON.stringify(user)
   })
     .then(res => res.json())
     .then(data =>

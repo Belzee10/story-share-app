@@ -27,21 +27,8 @@ exports.save = (req, res) => {
         if (err) {
           return res.status(500).json(err);
         } else {
-          let avatarName = "";
-          if (Object.keys(req.files).length != 0) {
-            const avatarFile = req.files.avatar;
-            avatarName =
-              email.split("@")[0] + "." + avatarFile.name.split(".")[1];
-
-            avatarFile.mv(`./public/${avatarName}`, err => {
-              if (err) return res.status(500).json(err);
-              console.log("File uploade");
-            });
-          }
-
           const user = new User({
             fullName,
-            avatar: `./public/${avatarName}`,
             email,
             password,
             role

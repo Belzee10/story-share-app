@@ -51,7 +51,6 @@ class CreateUser extends Component {
     ]);
     this.state = {
       fullName: "",
-      avatar: null,
       email: "",
       password: "",
       role: "",
@@ -59,7 +58,6 @@ class CreateUser extends Component {
     };
     this.submitted = false;
     this.onChange = this.onChange.bind(this);
-    this.fileOnChange = this.fileOnChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.afterSubmit = this.afterSubmit.bind(this);
   }
@@ -70,15 +68,10 @@ class CreateUser extends Component {
     });
   }
 
-  fileOnChange(e) {
-    this.setState({ avatar: e.target.files[0] });
-  }
-
   afterSubmit() {
     this.setState(prevState => {
       return {
         fullName: "",
-        avatar: null,
         email: "",
         password: "",
         role: ""
@@ -98,7 +91,7 @@ class CreateUser extends Component {
         password: this.state.password,
         role: this.state.role
       };
-      this.props.createUser(user, this.state.avatar);
+      this.props.createUser(user);
       this.afterSubmit();
       this.submitted = false;
     }
@@ -131,24 +124,6 @@ class CreateUser extends Component {
                     <InvalidFeedback>
                       {validation.fullName.message}
                     </InvalidFeedback>
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="avatar">
-                      Avatar:{" "}
-                      <small className="text-secondary">(optional)</small>
-                    </label>
-                    <div className="custom-file">
-                      <input
-                        type="file"
-                        className="custom-file-input"
-                        id="customFile"
-                        onChange={this.fileOnChange}
-                      />
-                      <label className="custom-file-label" htmlFor="customFile">
-                        Choose avatar...
-                      </label>
-                    </div>
                   </div>
 
                   <div className="form-group">

@@ -1,9 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-// import { API_FILES_URL } from "../../config";
 
-const Avatar = props => {
-  const { image, alt, dimensions } = props;
+function avatar(props) {
+  const { image, dimensions, alt } = props;
   return (
     <div className="avatar">
       <img
@@ -15,6 +14,20 @@ const Avatar = props => {
       />
     </div>
   );
+}
+
+function noAvatar(props) {
+  const { dimensions, alt } = props;
+  dimensions.lineHeight = dimensions.width;
+  return (
+    <div style={dimensions} className="no-avatar">
+      {alt.charAt(0).toUpperCase()}
+    </div>
+  );
+}
+
+const Avatar = props => {
+  return props.image ? avatar(props) : noAvatar(props);
 };
 
 Avatar.propTypes = {

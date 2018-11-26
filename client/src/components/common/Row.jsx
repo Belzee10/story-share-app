@@ -28,7 +28,11 @@ function cellType(item, key) {
         height: "30px"
       };
       return (
-        <Avatar image={item[key]} alt={item[key]} dimensions={dimensions} />
+        <Avatar
+          image={item[key]}
+          alt={item["fullName"]}
+          dimensions={dimensions}
+        />
       );
     default:
       return item[key];
