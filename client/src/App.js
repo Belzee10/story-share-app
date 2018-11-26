@@ -4,11 +4,12 @@ import {
   faComments,
   faUser,
   faList,
-  faCheck
+  faCheck,
+  faImage
 } from "@fortawesome/free-solid-svg-icons";
 import Main from "./containers/Main";
 
-library.add(faComments, faUser, faList, faCheck);
+library.add(faComments, faUser, faList, faCheck, faImage);
 
 class App extends Component {
   render() {

@@ -21,10 +21,9 @@ class CreateStory extends Component {
     ]);
     this.state = {
       title: "",
-      coverImage: "cover-image.png",
       content: "",
       categories: null,
-      author: "5bf43ba3eeed9f2644c99832",
+      author: "5bfc16f382428732d6c2f3a2",
       validation: this.validator.valid()
     };
     this.submitted = false;
@@ -84,7 +83,6 @@ class CreateStory extends Component {
       }
       const story = {
         title: this.state.title,
-        coverImage: this.state.coverImage,
         content: this.state.content,
         categories: categories,
         author: this.state.author

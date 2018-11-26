@@ -1,4 +1,5 @@
 const Category = require("../models/Category");
+const Story = require("../models/Story");
 
 exports.getAll = (req, res) => {
   Category.find()
@@ -45,6 +46,7 @@ exports.update = (req, res) => {
 
 exports.delete = (req, res) => {
   const id = req.params.id;
+  Story.remove({ categories: { $in: [id] } }).exec();
   Category.remove({ _id: id })
     .then(() => {
       Category.find()

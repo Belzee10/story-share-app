@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const Story = require("../models/Story");
 const bcrypt = require("bcrypt");
 
 exports.getAll = (req, res) => {
@@ -65,6 +66,7 @@ exports.update = (req, res) => {
 
 exports.delete = (req, res) => {
   const id = req.params.id;
+  Story.remove({ author: id }).exec();
   User.remove({ _id: id })
     .then(() => {
       User.find()

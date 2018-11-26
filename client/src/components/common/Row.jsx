@@ -34,6 +34,8 @@ function cellType(item, key) {
           dimensions={dimensions}
         />
       );
+    case "coverImage":
+      return item[key] ? "image" : <FontAwesomeIcon icon="image" />;
     default:
       return item[key];
   }
