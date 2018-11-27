@@ -7,6 +7,7 @@ module.exports = app => {
     .post(categoriesController.save);
   app
     .route("/api/admin/categories/:id")
+    .get(categoriesController.get)
     .delete(categoriesController.delete)
     .patch(categoriesController.update);
 };

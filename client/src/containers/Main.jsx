@@ -8,6 +8,7 @@ import Categories from "./back/categories/Categories";
 import Users from "./back/users/Users";
 import Stories from "./back/stories/Stories";
 import CreateCategory from "./back/categories/CreateCategory";
+import EditCategory from "./back/categories/EditCategory";
 import CreateUser from "./back/users/CreateUser";
 import CreateStory from "./back/stories/CreateStory";
 
@@ -22,6 +23,7 @@ class Main extends Component {
         <Navbar />
         <Switch>
           {/* admin routes */}
+          <Route path="/admin/categories/edit/:id" component={EditCategory} />
           <Route path="/admin/categories/new" component={CreateCategory} />
           <Route path="/admin/categories" component={Categories} />
 

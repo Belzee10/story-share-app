@@ -33,6 +33,7 @@ function listBody(items, keys, props) {
   }
   return items.map((item, index) => (
     <Row
+      editUrl={props.editUrl}
       item={item}
       excludeKeys={excludeKeys(keys)}
       index={index}
@@ -59,7 +60,8 @@ const List = props => {
 List.propTypes = {
   items: PropTypes.array.isRequired,
   keys: PropTypes.array.isRequired,
-  handleDelete: PropTypes.func.isRequired
+  handleDelete: PropTypes.func.isRequired,
+  editUrl: PropTypes.string
 };
 
 export default List;

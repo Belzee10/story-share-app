@@ -42,7 +42,7 @@ function cellType(item, key) {
 }
 
 const Row = props => {
-  const { item, excludeKeys, index } = props;
+  const { item, excludeKeys, index, editUrl } = props;
   return (
     <tr>
       <th scope="row">{index + 1}</th>
@@ -50,7 +50,11 @@ const Row = props => {
         <td key={key}>{cellType(item, key)}</td>
       ))}
       <td>
-        <Button buttonClass="btn-warning" buttonType="link" buttonUrl="/">
+        <Button
+          buttonClass="btn-warning"
+          buttonType="link"
+          buttonUrl={`${editUrl}/${item._id}`}
+        >
           Edit
         </Button>{" "}
         <Button
@@ -69,7 +73,8 @@ Row.propTypes = {
   item: PropTypes.object.isRequired,
   excludeKeys: PropTypes.array.isRequired,
   index: PropTypes.number.isRequired,
-  handleDelete: PropTypes.func.isRequired
+  handleDelete: PropTypes.func.isRequired,
+  editUrl: PropTypes.string
 };
 
 export default Row;

@@ -48,7 +48,12 @@ class Categories extends Component {
             <Count value={categories.length}>{this.countMessage()}</Count>
           </div>
         </div>
-        <List handleDelete={this.handleDelete} items={categories} keys={keys} />
+        <List
+          handleDelete={this.handleDelete}
+          editUrl="/admin/categories/edit"
+          items={categories}
+          keys={keys}
+        />
       </div>
     );
   }

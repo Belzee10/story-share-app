@@ -31,6 +31,19 @@ exports.save = (req, res) => {
     });
 };
 
+exports.get = (req, res) => {
+  const id = req.params.id;
+  Category.findOne({ _id: id })
+    .then(data => {
+      res.status(201).json({
+        result: data
+      });
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+};
+
 exports.update = (req, res) => {
   const id = req.params.id;
   Category.findOneAndUpdate({ _id: id }, req.body)
