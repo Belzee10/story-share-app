@@ -1,9 +1,16 @@
-import { FETCH_USERS, DELETE_USER, CREATE_USER } from "../actions/types";
+import {
+  FETCH_USERS,
+  DELETE_USER,
+  CREATE_USER,
+  FETCH_USER,
+  UPDATE_USER
+} from "../actions/types";
 
 const initialState = {
   items: [],
   keys: [],
   newUser: {},
+  user: {},
   message: ""
 };
 
@@ -26,6 +33,16 @@ export default function(state = initialState, action) {
         ...state,
         newUser: action.payload.result,
         message: action.payload.message
+      };
+    case FETCH_USER:
+      return {
+        ...state,
+        user: action.payload.result
+      };
+    case UPDATE_USER:
+      return {
+        ...state,
+        message: action.payload.result
       };
     default:
       return state;

@@ -7,6 +7,7 @@ module.exports = app => {
     .post(usersController.save);
   app
     .route("/api/admin/users/:id")
+    .get(usersController.get)
     .delete(usersController.delete)
     .patch(usersController.update);
 };

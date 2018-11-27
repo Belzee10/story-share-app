@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
   fetchCategory,
@@ -118,6 +118,11 @@ class EditCategory extends Component {
     );
   }
 }
+
+EditCategory.propTypes = {
+  updateCategory: PropTypes.func.isRequired,
+  fetchCategory: PropTypes.func.isRequired
+};
 
 const mapStateToProps = state => ({
   category: state.categories.category,

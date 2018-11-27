@@ -61,7 +61,7 @@ List.propTypes = {
   items: PropTypes.array.isRequired,
   keys: PropTypes.array.isRequired,
   handleDelete: PropTypes.func.isRequired,
-  editUrl: PropTypes.string
+  editUrl: PropTypes.string.isRequired
 };
 
 export default List;

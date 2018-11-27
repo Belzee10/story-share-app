@@ -7,6 +7,7 @@ module.exports = app => {
     .post(storiesController.save);
   app
     .route("/api/admin/stories/:id")
+    .get(storiesController.get)
     .delete(storiesController.delete)
     .patch(storiesController.update);
 };

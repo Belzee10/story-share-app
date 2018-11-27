@@ -8,9 +8,11 @@ import Categories from "./back/categories/Categories";
 import Users from "./back/users/Users";
 import Stories from "./back/stories/Stories";
 import CreateCategory from "./back/categories/CreateCategory";
-import EditCategory from "./back/categories/EditCategory";
 import CreateUser from "./back/users/CreateUser";
 import CreateStory from "./back/stories/CreateStory";
+import EditCategory from "./back/categories/EditCategory";
+import EditUser from "./back/users/EditUser";
+import EditStory from "./back/stories/EditStory";
 
 class Main extends Component {
   constructor(props) {
@@ -27,9 +29,11 @@ class Main extends Component {
           <Route path="/admin/categories/new" component={CreateCategory} />
           <Route path="/admin/categories" component={Categories} />
 
+          <Route path="/admin/users/edit/:id" component={EditUser} />
           <Route path="/admin/users/new" component={CreateUser} />
           <Route path="/admin/users" component={Users} />
 
+          <Route path="/admin/stories/edit/:id" component={EditStory} />
           <Route path="/admin/stories/new" component={CreateStory} />
           <Route path="/admin/stories" component={Stories} />
 

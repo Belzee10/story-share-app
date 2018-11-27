@@ -43,7 +43,12 @@ class Users extends Component {
             <Count value={users.length}>{this.countMessage()}</Count>
           </div>
         </div>
-        <List handleDelete={this.handleDelete} items={users} keys={keys} />
+        <List
+          editUrl="/admin/users/edit"
+          handleDelete={this.handleDelete}
+          items={users}
+          keys={keys}
+        />
       </div>
     );
   }

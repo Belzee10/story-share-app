@@ -45,7 +45,12 @@ class Stories extends Component {
             <Count value={stories.length}>{this.countMessage()}</Count>
           </div>
         </div>
-        <List handleDelete={this.handleDelete} items={stories} keys={keys} />
+        <List
+          editUrl="/admin/stories/edit"
+          handleDelete={this.handleDelete}
+          items={stories}
+          keys={keys}
+        />
       </div>
     );
   }
