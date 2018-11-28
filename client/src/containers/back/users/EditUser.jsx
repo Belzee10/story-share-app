@@ -208,6 +208,11 @@ class EditUser extends Component {
   }
 }
 
+EditUser.propTypes = {
+  updateUser: PropTypes.func.isRequired,
+  fetchUser: PropTypes.func.isRequired
+};
+
 const mapStateToProps = state => ({
   user: state.users.user,
   message: state.users.message

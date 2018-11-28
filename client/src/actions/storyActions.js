@@ -1,4 +1,10 @@
-import { FETCH_STORIES, DELETE_STORY, CREATE_STORY } from "./types";
+import {
+  FETCH_STORIES,
+  DELETE_STORY,
+  CREATE_STORY,
+  FETCH_STORY,
+  UPDATE_STORY
+} from "./types";
 import { API_ADMIN_URL } from "../config";
 
 const headers = {
@@ -42,6 +48,35 @@ export const createStory = story => dispatch => {
     .then(data =>
       dispatch({
         type: CREATE_STORY,
+        payload: data
+      })
+    );
+};
+
+export const fetchStory = storyId => dispatch => {
+  fetch(`${API_ADMIN_URL}/stories/${storyId}`, {
+    headers,
+    method: "GET"
+  })
+    .then(res => res.json())
+    .then(data =>
+      dispatch({
+        type: FETCH_STORY,
+        payload: data
+      })
+    );
+};
+
+export const updateStory = (storyId, story) => dispatch => {
+  fetch(`${API_ADMIN_URL}/stories/${storyId}`, {
+    headers,
+    method: "PATCH",
+    body: JSON.stringify(story)
+  })
+    .then(res => res.json())
+    .then(data =>
+      dispatch({
+        type: UPDATE_STORY,
         payload: data
       })
     );

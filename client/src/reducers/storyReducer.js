@@ -1,9 +1,16 @@
-import { FETCH_STORIES, DELETE_STORY, CREATE_STORY } from "../actions/types";
+import {
+  FETCH_STORIES,
+  DELETE_STORY,
+  CREATE_STORY,
+  FETCH_STORY,
+  UPDATE_STORY
+} from "../actions/types";
 
 const initialState = {
   items: [],
   keys: [],
   newStory: {},
+  story: {},
   message: ""
 };
 
@@ -26,6 +33,16 @@ export default function(state = initialState, action) {
         ...state,
         newStory: action.payload.result,
         message: action.payload.message
+      };
+    case FETCH_STORY:
+      return {
+        ...state,
+        story: action.payload.result
+      };
+    case UPDATE_STORY:
+      return {
+        ...state,
+        message: action.payload.result
       };
     default:
       return state;

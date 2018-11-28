@@ -56,6 +56,7 @@ class CreateStory extends Component {
       };
       options.push(category);
     });
+
     return options;
   }
 

@@ -40,6 +40,7 @@ exports.save = (req, res) => {
 exports.get = (req, res) => {
   const id = req.params.id;
   Story.findOne({ _id: id })
+    .populate("categories")
     .then(data => {
       res.status(201).json({
         result: data
