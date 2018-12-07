@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
 
 import Navbar from "./Navbar";
+import Footer from "../components/footer/Footer";
 import Home from "./Home";
 import HomeAdmin from "./HomeAdmin";
 import Categories from "./back/categories/Categories";
@@ -42,6 +43,7 @@ class Main extends Component {
           <Route exact path="/" component={Home} />
           <Redirect from="*" to="/" />
         </Switch>
+        <Footer />
       </React.Fragment>
     );
   }
