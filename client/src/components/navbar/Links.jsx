@@ -1,35 +1,11 @@
 import React, { Component } from "react";
 import { Link as Enlace } from "react-router-dom";
+import { connect } from "react-redux";
+import { fetchCategories } from "../../actions/categoryActions";
 
 import Logo from "../common/Logo";
 import Link from "./Link";
 
-const links = [
-  {
-    id: 1,
-    name: "All"
-  },
-  {
-    id: 2,
-    name: "Photography"
-  },
-  {
-    id: 3,
-    name: "Web development"
-  },
-  {
-    id: 4,
-    name: "Web design"
-  },
-  {
-    id: 5,
-    name: "Nature"
-  },
-  {
-    id: 6,
-    name: "More"
-  }
-];
 class Links extends Component {
   constructor(props) {
     super(props);
@@ -38,6 +14,10 @@ class Links extends Component {
     };
     this.onCollapse = this.onCollapse.bind(this);
     this.navbarClass = this.navbarClass.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.fetchCategories();
   }
 
   onCollapse() {
@@ -57,6 +37,7 @@ class Links extends Component {
   }
 
   render() {
+    const { categories } = this.props;
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light border-top border-bottom p-0">
         <Enlace to="/" className="navbar-brand d-lg-none">
@@ -76,8 +57,13 @@ class Links extends Component {
         </button>
         <div className={this.navbarClass()} id="navbarSupportedContent">
           <ul className="navbar-nav mx-auto">
-            {links.map(link => (
-              <Link link={link} key={link.id} />
+            <li className="nav-item text-uppercase mr-3">
+              <Enlace to="/" className="nav-link">
+                All
+              </Enlace>
+            </li>
+            {categories.map(item => (
+              <Link item={item} key={item._id} />
             ))}
             <li className="nav-item d-lg-none">
               <Enlace to="/" className="btn btn-dark btn-sm">
@@ -91,4 +77,11 @@ class Links extends Component {
   }
 }
 
-export default Links;
+const mapStateToProps = state => ({
+  categories: state.categories.items
+});
+
+export default connect(
+  mapStateToProps,
+  { fetchCategories }
+)(Links);

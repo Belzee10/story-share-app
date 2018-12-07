@@ -5,7 +5,7 @@ const Link = props => {
   return (
     <li className="nav-item text-uppercase mr-3">
       <Enlace to="/" className="nav-link">
-        {props.link.name}
+        {props.item.name}
       </Enlace>
     </li>
   );
