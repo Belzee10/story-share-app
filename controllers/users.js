@@ -38,7 +38,7 @@ exports.save = (req, res) => {
             .save()
             .then(data => {
               res.status(201).json({
-                message: "User created successful!",
+                message: "User created successfuly!",
                 result: user
               });
             })
@@ -69,7 +69,7 @@ exports.update = (req, res) => {
   User.findOneAndUpdate({ _id: id }, req.body)
     .then(data => {
       res.status(201).json({
-        message: "User updated"
+        message: "User updated successfuly!"
       });
     })
     .catch(err => {

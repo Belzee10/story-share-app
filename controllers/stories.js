@@ -28,7 +28,7 @@ exports.save = (req, res) => {
     .save()
     .then(data => {
       res.status(201).json({
-        message: "Story created successful!",
+        message: "Story created successfuly!",
         result: data
       });
     })
@@ -56,7 +56,7 @@ exports.update = (req, res) => {
   Story.findOneAndUpdate({ _id: id }, req.body)
     .then(data => {
       res.status(201).json({
-        message: "Story updated"
+        message: "Story updated successfuly!"
       });
     })
     .catch(err => {

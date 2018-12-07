@@ -22,7 +22,7 @@ exports.save = (req, res) => {
     .save()
     .then(data => {
       res.status(201).json({
-        message: "Category created successful!",
+        message: "Category created successfuly!",
         result: category
       });
     })
@@ -49,7 +49,7 @@ exports.update = (req, res) => {
   Category.findOneAndUpdate({ _id: id }, req.body)
     .then(data => {
       res.status(201).json({
-        message: "Category updated"
+        message: "Category updated successfuly!"
       });
     })
     .catch(err => {

@@ -6,7 +6,7 @@ import FormValidator from "../../../utiles/FormValidator";
 
 import Button from "../../../components/common/Button";
 import InvalidFeedback from "../../../components/common/InvalidFeedback";
-import Alert from "../../../components/common//Alert";
+import Alert from "../../../components/common/Alert";
 
 class CreateCategory extends Component {
   constructor(props) {
@@ -131,7 +131,7 @@ class CreateCategory extends Component {
           </div>
           <div className="col-lg-6">
             {showAlert && (
-              <Alert alertType="success">Category created successfuly!</Alert>
+              <Alert alertType="success">{this.props.message}</Alert>
             )}
           </div>
         </div>

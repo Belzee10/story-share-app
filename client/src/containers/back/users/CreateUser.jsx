@@ -6,6 +6,7 @@ import FormValidator from "../../../utiles/FormValidator";
 
 import Button from "../../../components/common/Button";
 import InvalidFeedback from "../../../components/common/InvalidFeedback";
+import Alert from "../../../components/common/Alert";
 
 class CreateUser extends Component {
   constructor(props) {
@@ -54,12 +55,22 @@ class CreateUser extends Component {
       email: "",
       password: "",
       role: "",
+      showAlert: false,
       validation: this.validator.valid()
     };
     this.submitted = false;
+    this.timer = null;
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.afterSubmit = this.afterSubmit.bind(this);
+    this.handleTimeOut = this.handleTimeOut.bind(this);
+  }
+
+  componentWillUnmount() {
+    if (this.timer) {
+      clearTimeout(this.timer);
+      this.timer = null;
+    }
   }
 
   onChange(e) {
@@ -68,15 +79,33 @@ class CreateUser extends Component {
     });
   }
 
+  handleTimeOut() {
+    if (this.timer) {
+      clearTimeout(this.timer);
+      this.timer = null;
+    }
+    this.timer = setTimeout(() => {
+      this.setState({
+        showAlert: false
+      });
+    }, 2000);
+  }
+
   afterSubmit() {
-    this.setState(prevState => {
-      return {
-        fullName: "",
-        email: "",
-        password: "",
-        role: ""
-      };
-    });
+    this.setState(
+      prevState => {
+        return {
+          showAlert: (prevState.showAlert = true),
+          fullName: "",
+          email: "",
+          password: "",
+          role: ""
+        };
+      },
+      () => {
+        this.handleTimeOut();
+      }
+    );
   }
 
   onSubmit(e) {
@@ -98,7 +127,7 @@ class CreateUser extends Component {
   }
 
   render() {
-    const { fullName, email, password, role } = this.state;
+    const { fullName, email, password, role, showAlert } = this.state;
     let validation = this.submitted
       ? this.validator.validate(this.state)
       : this.state.validation;
@@ -194,6 +223,11 @@ class CreateUser extends Component {
                 </form>
               </div>
             </div>
+          </div>
+          <div className="col-lg-6">
+            {showAlert && (
+              <Alert alertType="success">{this.props.message}</Alert>
+            )}
           </div>
         </div>
       </div>
