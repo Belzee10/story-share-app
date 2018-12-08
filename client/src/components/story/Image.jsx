@@ -1,7 +1,9 @@
-import React from 'react';
+import React from "react";
 
-const Image = (props) => {
-    return (  );
-}
- 
+import image from "../../assets/images/one.jpg";
+
+const Image = props => {
+  return <img src={image} alt="" className="img-thumbnail" />;
+};
+
 export default Image;

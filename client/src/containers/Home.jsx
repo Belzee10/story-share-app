@@ -8,7 +8,11 @@ class Home extends Component {
     this.state = {};
   }
   render() {
-    return <Stories />;
+    return (
+      <main className="container">
+        <Stories />
+      </main>
+    );
   }
 }
 
