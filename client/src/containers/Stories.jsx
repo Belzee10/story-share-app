@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 
-import Stories from "./Stories";
-
-class Home extends Component {
+class Stories extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
   render() {
-    return <Stories />;
+    return <h1>Stories</h1>;
   }
 }
 
-export default Home;
+export default Stories;
