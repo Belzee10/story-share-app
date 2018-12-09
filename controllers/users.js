@@ -1,6 +1,8 @@
 const User = require("../models/User");
 const Story = require("../models/Story");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const keys = require("../config/keys");
 
 exports.getAll = (req, res) => {
   User.find()
@@ -34,17 +36,24 @@ exports.save = (req, res) => {
             password,
             role
           });
-          user
-            .save()
-            .then(data => {
-              res.status(201).json({
-                message: "User created successfuly!",
-                result: user
-              });
-            })
-            .catch(err => {
-              res.status(500).json(err);
+
+          bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(user.password, salt, (err, hash) => {
+              if (err) throw err;
+              user.password = hash;
+              user
+                .save()
+                .then(data => {
+                  res.status(201).json({
+                    message: "User created successfuly!",
+                    result: user
+                  });
+                })
+                .catch(err => {
+                  res.status(500).json(err);
+                });
             });
+          });
         }
       });
     }
@@ -95,4 +104,37 @@ exports.delete = (req, res) => {
     .catch(err => {
       res.status(500).json(err);
     });
+};
+
+exports.register = (req, res) => {};
+
+exports.login = (req, res) => {
+  const { email, password } = req.body;
+  User.findOne({ email }).then(user => {
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found"
+      });
+    }
+    bcrypt.compare(password, user.password).then(isMatch => {
+      if (isMatch) {
+        const payload = { id: user.id, fullName: user.fullName };
+        jwt.sign(
+          payload,
+          keys.secretOrKey,
+          { expiresIn: 3600 },
+          (err, token) => {
+            return res.json({
+              success: true,
+              token: "Bearer " + token
+            });
+          }
+        );
+      } else {
+        return res.status(400).json({
+          message: "Password incorrect"
+        });
+      }
+    });
+  });
 };

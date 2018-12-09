@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import Stories from "./Stories";
+import PopularStories from "./PopularStories";
 
 class Home extends Component {
   constructor(props) {
@@ -10,7 +11,12 @@ class Home extends Component {
   render() {
     return (
       <main className="container">
-        <Stories />
+        <section id="stories">
+          <div className="row">
+            <Stories />
+            <PopularStories />
+          </div>
+        </section>
       </main>
     );
   }

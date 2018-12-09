@@ -17,15 +17,11 @@ class Stories extends Component {
   render() {
     const { stories } = this.props;
     return (
-      <section id="stories">
-        <div className="row">
-          <div className="col-lg-8 col-md-6">
-            {stories.map(story => (
-              <Story story={story} key={story._id} />
-            ))}
-          </div>
-        </div>
-      </section>
+      <div className="col-lg-8 col-md-6">
+        {stories.map(story => (
+          <Story story={story} key={story._id} />
+        ))}
+      </div>
     );
   }
 }

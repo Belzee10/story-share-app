@@ -5,9 +5,10 @@ import Image from "./Image";
 import Content from "./Content";
 import Author from "./Author";
 import Date from "../common/Date";
+import Likes from "./Likes";
 
 const Story = props => {
-  const { publishDate, title, content, author } = props.story;
+  const { publishDate, title, content, author, likes } = props.story;
   return (
     <div className="row story">
       <div className="col-md-5">
@@ -26,10 +27,7 @@ const Story = props => {
         <span className="d-block text-body">
           <Author>{author.fullName}</Author>
         </span>
-        <div className="likes d-block mt-2">
-          <i className="jam jam-heart" />
-          <span>34 Likes</span>
-        </div>
+        <Likes likes={likes} />
       </div>
     </div>
   );

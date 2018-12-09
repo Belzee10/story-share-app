@@ -10,4 +10,6 @@ module.exports = app => {
     .get(usersController.get)
     .delete(usersController.delete)
     .patch(usersController.update);
+  app.route("/api/register").post(usersController.register);
+  app.route("/api/login").post(usersController.login);
 };
