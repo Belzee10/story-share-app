@@ -1,1 +1,0 @@
-{"version":3,"sources":["config.js"],"names":["API_ADMIN_URL"],"mappings":";;;;;;AAAO,MAAMA,aAAa,GAAG,YAAtB","sourcesContent":["export const API_ADMIN_URL = \"/api/admin\";\n"]}
