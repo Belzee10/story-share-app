@@ -11,8 +11,7 @@
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [
-    "social media",
-    "MERN"
+    "social media"
   ],
   "author": "Belzee10",
   "license": "ISC",
