@@ -1,15 +1,22 @@
 const usersController = require("../controllers/users");
+const passport = require("passport");
 
 module.exports = app => {
   app
-    .route("/api/admin/users")
-    .get(usersController.getAll)
+    .route("/api/users")
+    .get(
+      passport.authenticate("jwt", { session: false }),
+      usersController.getAll
+    )
     .post(usersController.save);
   app
-    .route("/api/admin/users/:id")
-    .get(usersController.get)
+    .route("/api/users/:id")
+    .get(passport.authenticate("jwt", { session: false }), usersController.get)
     .delete(usersController.delete)
-    .patch(usersController.update);
+    .patch(
+      passport.authenticate("jwt", { session: false }),
+      usersController.update
+    );
   app.route("/api/register").post(usersController.register);
   app.route("/api/login").post(usersController.login);
 };

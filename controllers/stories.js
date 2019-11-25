@@ -1,12 +1,14 @@
 const Story = require("../models/Story");
 
+/**
+ * get all stories
+ */
 exports.getAll = (req, res) => {
   Story.find()
     .sort({ created_at: "desc" })
     .populate("author")
     .then(data => {
       res.status(200).json({
-        keys: Object.keys(Story.schema.paths),
         result: data
       });
     })
@@ -15,11 +17,32 @@ exports.getAll = (req, res) => {
     });
 };
 
+/**
+ * get popular stories
+ */
+exports.getPopular = (req, res) => {
+  Story.find()
+    .sort({ likes: "desc" })
+    .populate("author")
+    .limit(4)
+    .then(data => {
+      res.status(200).json({
+        result: data
+      });
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+};
+
+/**
+ * create story
+ */
 exports.save = (req, res) => {
-  const { title, coverImage, content, categories, author } = req.body;
+  const { title, image, content, categories, author } = req.body;
   const story = new Story({
     title,
-    coverImage,
+    image,
     content,
     categories,
     author
@@ -28,7 +51,6 @@ exports.save = (req, res) => {
     .save()
     .then(data => {
       res.status(201).json({
-        message: "Story created successfuly!",
         result: data
       });
     })
@@ -37,10 +59,13 @@ exports.save = (req, res) => {
     });
 };
 
+/**
+ * get story
+ */
 exports.get = (req, res) => {
   const id = req.params.id;
   Story.findOne({ _id: id })
-    .populate("categories")
+    .populate("author")
     .then(data => {
       res.status(201).json({
         result: data
@@ -51,12 +76,16 @@ exports.get = (req, res) => {
     });
 };
 
+/**
+ * update story
+ */
 exports.update = (req, res) => {
   const id = req.params.id;
-  Story.findOneAndUpdate({ _id: id }, req.body)
+  Story.findOneAndUpdate({ _id: id }, { $set: req.body }, { new: true })
+    .populate("author")
     .then(data => {
-      res.status(201).json({
-        message: "Story updated successfuly!"
+      res.status(200).json({
+        result: data
       });
     })
     .catch(err => {
@@ -64,19 +93,16 @@ exports.update = (req, res) => {
     });
 };
 
+/**
+ * delete story
+ */
 exports.delete = (req, res) => {
   const id = req.params.id;
   Story.remove({ _id: id })
     .then(() => {
-      Story.find()
-        .sort({ created_at: "desc" })
-        .then(data => {
-          res.status(200).json({
-            keys: Object.keys(Story.schema.paths),
-            result: data,
-            message: "Story deleted"
-          });
-        });
+      res.status(200).json({
+        message: "Story deleted"
+      });
     })
     .catch(err => {
       res.status(500).json(err);

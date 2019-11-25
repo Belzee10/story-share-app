@@ -1,12 +1,31 @@
 const Category = require("../models/Category");
 const Story = require("../models/Story");
 
-exports.getAll = (req, res) => {
+/**
+ * get all categories
+ */
+exports.getAll = (_, res) => {
   Category.find()
     .sort({ created_at: "desc" })
     .then(data => {
       res.status(200).json({
-        keys: Object.keys(Category.schema.paths),
+        result: data
+      });
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+};
+
+/**
+ * get stories by category
+ */
+exports.getStories = (req, res) => {
+  const id = req.params.id;
+  Story.find({ categories: id })
+    .populate("author")
+    .then(data => {
+      res.status(200).json({
         result: data
       });
     })
@@ -22,8 +41,7 @@ exports.save = (req, res) => {
     .save()
     .then(data => {
       res.status(201).json({
-        message: "Category created successfuly!",
-        result: category
+        result: data
       });
     })
     .catch(err => {

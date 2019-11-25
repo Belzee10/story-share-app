@@ -4,14 +4,17 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const passport = require("passport");
+const dotenv = require("dotenv");
 
 const app = express();
+dotenv.config();
 
 // connect to MongoDB
-mongoose.connect(
-  "mongodb://localhost/storyShare",
-  { useNewUrlParser: true }
-);
+mongoose.connect("mongodb://localhost/storyShare", {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useFindAndModify: false
+});
 mongoose.Promise = global.Promise;
 mongoose.set("useCreateIndex", true);
 

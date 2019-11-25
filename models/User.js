@@ -2,42 +2,34 @@ const mongoose = require("mongoose");
 var uniqueValidator = require("mongoose-unique-validator");
 
 let UserSchema = new mongoose.Schema({
-  fullName: {
+  name: {
     type: String,
-    required: [true, "The name is required"]
+    required: [true, "The Name is required"]
+  },
+  lastName: {
+    type: String,
+    required: [true, "The LastName is required"]
   },
   avatar: {
-    type: String //not implemented
+    type: String,
+    default: ""
   },
   email: {
     type: String,
-    required: [true, "The email is required"],
+    required: [true, "The Email is required"],
     index: true,
     unique: true
   },
   password: {
     type: String,
     min: [3, "The password must have 3 or more characters"],
-    required: [true, "The password is required"]
+    required: [true, "The Password is required"]
   },
   role: {
     type: String,
     enum: ["admin", "member"],
-    required: [true, "The role is required"]
+    required: [true, "The Role is required"]
   },
-  notifications: [
-    {
-      text: String,
-      hasSeen: {
-        type: Boolean,
-        default: false
-      },
-      type: {
-        type: String,
-        enum: ["like", "comment"]
-      }
-    }
-  ],
   created_at: { type: Date, required: true, default: Date.now }
 });
 

@@ -5,15 +5,18 @@ let StorySchema = new mongoose.Schema({
     type: String,
     required: [true, "The title is required"]
   },
-  coverImage: {
-    type: String //not implemented
+  image: {
+    type: String,
+    default: ""
   },
-  publishDate: {
+  date: {
     type: Date,
-    default: Date.now
+    default: Date.now,
+    required: [true, "The date is required"]
   },
   content: {
-    type: String
+    type: String,
+    default: ""
   },
   likes: {
     type: Number,
@@ -27,20 +30,14 @@ let StorySchema = new mongoose.Schema({
   ],
   comments: [
     {
-      content: {
-        type: String,
-        required: [true, "You must write something"]
-      },
-      user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
-      }
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Comment"
     }
   ],
   author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    required: [true, "Who is this story?"]
+    required: [true, "The User is required"]
   },
   created_at: { type: Date, required: true, default: Date.now }
 });

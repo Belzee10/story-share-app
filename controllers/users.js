@@ -2,15 +2,24 @@ const User = require("../models/User");
 const Story = require("../models/Story");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const keys = require("../config/keys");
 
-exports.getAll = (req, res) => {
+/**
+ * get all users
+ */
+exports.getAll = (_, res) => {
   User.find()
     .sort({ created_at: "desc" })
     .then(data => {
+      const newData = [...data].map(item => ({
+        _id: item._id,
+        name: item.name,
+        lastName: item.lastName,
+        avatar: item.avatar,
+        email: item.email,
+        role: item.role
+      }));
       res.status(200).json({
-        keys: Object.keys(User.schema.paths),
-        result: data
+        result: newData
       });
     })
     .catch(err => {
@@ -60,6 +69,9 @@ exports.save = (req, res) => {
   });
 };
 
+/**
+ * get user
+ */
 exports.get = (req, res) => {
   const id = req.params.id;
   User.findOne({ _id: id })
@@ -73,12 +85,15 @@ exports.get = (req, res) => {
     });
 };
 
+/**
+ * update user
+ */
 exports.update = (req, res) => {
   const id = req.params.id;
-  User.findOneAndUpdate({ _id: id }, req.body)
+  User.findOneAndUpdate({ _id: id }, { $set: req.body }, { new: true })
     .then(data => {
-      res.status(201).json({
-        message: "User updated successfuly!"
+      res.status(200).json({
+        result: data
       });
     })
     .catch(err => {
@@ -106,33 +121,72 @@ exports.delete = (req, res) => {
     });
 };
 
-exports.register = (req, res) => {};
+/**
+ * register a user
+ */
+exports.register = (req, res) => {
+  const { name, lastName, email, password } = req.body;
 
+  User.findOne({ email }).then(user => {
+    if (user) {
+      return res.status(409).json({
+        error: "User already exists"
+      });
+    } else {
+      const newUser = new User({
+        name,
+        lastName,
+        email,
+        password,
+        role: "member"
+      });
+      bcrypt.genSalt(10, (_, salt) => {
+        bcrypt.hash(newUser.password, salt, (err, hash) => {
+          if (err) throw err;
+          newUser.password = hash;
+          newUser
+            .save()
+            .then(user => {
+              const payload = { id: user.id, name: user.name };
+              jwt.sign(payload, "secret", { expiresIn: 3600 }, (err, token) => {
+                const result = { ...user._doc };
+                result.token = `Bearer ${token}`;
+                return res.status(200).json({
+                  result
+                });
+              });
+            })
+            .catch(err => {
+              res.status(500).json(err);
+            });
+        });
+      });
+    }
+  });
+};
+
+/**
+ * login a user
+ */
 exports.login = (req, res) => {
   const { email, password } = req.body;
   User.findOne({ email }).then(user => {
     if (!user) {
       return res.status(404).json({
-        message: "User not found"
+        error: "Invalid Email"
       });
     }
     bcrypt.compare(password, user.password).then(isMatch => {
       if (isMatch) {
-        const payload = { id: user.id, fullName: user.fullName };
-        jwt.sign(
-          payload,
-          keys.secretOrKey,
-          { expiresIn: 3600 },
-          (err, token) => {
-            return res.json({
-              success: true,
-              token: "Bearer " + token
-            });
-          }
-        );
+        const payload = { id: user.id, name: user.name };
+        jwt.sign(payload, "secret", { expiresIn: 3600 }, (err, token) => {
+          return res.status(200).json({
+            result: `Bearer ${token}`
+          });
+        });
       } else {
         return res.status(400).json({
-          message: "Password incorrect"
+          error: "Invalid Password"
         });
       }
     });
